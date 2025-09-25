@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user, notice: "新規登録ありがとうございます。"
+      redirect_to @user, notice: "ログインありがとうございます。"
     else
-      flash.now[:alert] = "新規登録に失敗しました。"
+      flash.now[:alert] = "ログインに失敗しました。"
       render :new
     end
   end
