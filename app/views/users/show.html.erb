@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="container px-5 px-sm-0">
+        <%= render 'books/user_info', user: @user%>
+
+        <%= render 'books/new_book_form', books: @book %>
+        <% if current_user != @user %>
+          <%= link_to '', edit_user_path(@user) %>
+        <% end %>
+      </div>
+    </div>

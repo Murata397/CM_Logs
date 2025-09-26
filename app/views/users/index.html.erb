@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="container px-5 px-sm-0">
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h1>Users</h1>
+      <table class="table table-honer table-inverse">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image %></td>
+              <td><%= user.name %></td>
+              <td><a href="<%= user_path(user) %>">Show</a></td>
+              <td colspan="3"></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

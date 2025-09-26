@@ -6,16 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/24600f808d.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/">
+          <a class="navbar-brand p-3"><i class="fa-solid fa-car"></i>
             <span>Car Maintenance Logs</span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -26,44 +30,44 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li>
-                  <a class="nav-link text-light" href="/users/<%= currrent_user.id %>">
+                  <a class="nav-link text-dark" href="/">
+                    <i class="fa-solid fa-home"></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="/users/ %>">
                     <i class="fa-solid fa-user"></i>
                     User
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link text-light" href="/users">
+                  <a class="nav-link text-dark" href="/users">
                     <i class="fa-solid fa-users"></i>
                     Users
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link text-light" href="/maintenances">
+                  <a class="nav-link text-dark" href="/maintenances">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     Maintenance
                   </a>
                 </li>
                 <li>
-                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
                     <i class="fa-solid fa-sign-out-alt"></i>
                     Log out
                   <% end %>
                 </li>
               <% else %>
                 <li>
-                  <a class="nav-link text-light" href="/">
-                    <i class="fa-solid fa-home"></i>
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a class="nav-link text-light" href="/users/sign_up">
+                  <a class="nav-link text-dark" href="/users/sign_up">
                     <i class="fa-solid fa-user-plus"></i>
                     Sign up
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link text-light" href="/users/sign_in">
+                  <a class="nav-link text-dark" href="/users/sign_in">
                     <i class="fa-solid fa-sign-in-alt"></i>
                     Log in
                   </a>
@@ -74,6 +78,19 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+      <main class="mb-auto">
+        <%= yield %>
+      </main>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-12 d-flex justify-content-center">
+            <p>整備に関する知識を共有しよう！<br>
+                整備に関する工具を共有しよう！<br>
+                整備に関する料金を共有しよう！</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
