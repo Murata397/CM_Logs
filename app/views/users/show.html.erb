@@ -1,14 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="container px-5 px-sm-0">
-        <%= render 'books/user_info', user: @user%>
-
-        <%= render 'books/new_book_form', books: @book %>
-        <% if current_user != @user %>
-          <%= link_to '', edit_user_path(@user) %>
-        <% end %>
-      </div>
+<div class="container text-center">
+  <div class="profile">
+    <img src="<%= @user.profile_image_url %>" style="max-width: 500px; max-height: 500px;" class="img-fluid" alt="ユーザーの画像">
+    <table class="table table-striped">
+      <tr>
+        <th>名前</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </table>
+    <div class="d-flex justify-content-between">
+      <a href="/users/<%= current_user.id %>/edit" class="btn btn-primary">編集</a>
+      <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
     </div>
+  </div>
+</div>
