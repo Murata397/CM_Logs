@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form>
+                <div class="form-group">
+                    <label for="title">タイトル</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="date">作業日</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="task">作業（内容）</label>
+                    <textarea class="form-control" id="task" name="task"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="difficulty">作業難易度</label>
+                    <select class="form-control" id="difficulty" name="difficulty">
+                        <option value="easy">簡単</option>
+                        <option value="normal">普通</option>
+                        <option value="difficult">難しい</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tool_images">使用工具画像（最大4枚）</label>
+                    <input type="file" class="form-control-file" id="tool_images" name="tool_images" multiple>
+                </div>
+                <div class="form-group">
+                    <label for="time">作業時間</label>
+                    <input type="text" class="form-control" id="time" name="time">
+                </div>
+                <div class="form-group">
+                    <label for="price">作業料金</label>
+                    <input type="text" class="form-control" id="price" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="work_images">作業画像（最大10枚まで）</label>
+                    <input type="file" class="form-control-file" id="work_images" name="work_images" multiple>
+                </div>
+                <div class="form-group">
+                    <label for="description">作業説明</label>
+                    <textarea class="form-control" id="description" name="description" maxlength="200"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="related_url">関連情報URL</label>
+                    <input type="text" class="form-control" id="related_url" name="related_url">
+                </div>
+                <button type="submit" class="btn btn-primary">作成</button>
+            </form>
+        </div>
+    </div>
+</div>
