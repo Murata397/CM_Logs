@@ -37,13 +37,41 @@
                     <input type="text" class="form-control" id="price" name="price">
                 </div>
                 <div class="form-group">
-                    <label for="work_images">作業画像（最大10枚まで）</label>
-                    <input type="file" class="form-control-file" id="work_images" name="work_images" multiple>
+                  <label>作業画像</label>
+                  <input type="file" name="work_image[]" multiple>
                 </div>
                 <div class="form-group">
-                    <label for="description">作業説明</label>
-                    <textarea class="form-control" id="description" name="description" maxlength="200"></textarea>
+                  <label>作業説明</label>
+                  <textarea name="work_description[]"></textarea>
                 </div>
+                <div class="input_fields_wrap"></div>
+                <button class="add_field_button">追加</button>
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  var addButton = document.querySelector('.add_field_button');
+                  var inputFieldsWrap = document.querySelector('.input_fields_wrap');
+                  var x = 1;
+
+                  addButton.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+
+                    if (x < 10) {
+                        x++;
+                        var newField = document.createElement('div');
+                        newField.innerHTML = `
+                        <div class="form-group">
+                          <label>作業画像</label>
+                          <input type="file" name="work_image[]" multiple>
+                        </div>
+                      <div class="form-group">
+                        <label>作業説明</label>
+                        <textarea name="work_description[]"></textarea>
+                      </div>`;
+                      inputFieldsWrap.appendChild(newField);
+                    }
+                  });
+                });
+                </script>
                 <div class="form-group">
                     <label for="related_url">関連情報URL</label>
                     <input type="text" class="form-control" id="related_url" name="related_url">
