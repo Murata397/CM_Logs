@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<div id="error_message" style="color: red;"></div>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -13,8 +16,14 @@
                     <input type="date" class="form-control" id="date" name="date">
                 </div>
                 <div class="form-group">
-                    <label for="task">作業（内容）</label>
-                    <textarea class="form-control" id="task" name="task"></textarea>
+                  <label for="task">作業内容</label>
+                  <select class="form-control" id="task" name="task">
+                    <option value="daily">日常点検</option>
+                    <option value="legal">法定点検</option>
+                    <option value="tuning">チューニング</option>
+                    <option value="carwash">洗車</option>
+                    <option value="maintenance">メンテナンス</option>
+                  </select>
                 </div>
                 <div class="form-group">
                     <label for="difficulty">作業難易度</label>
@@ -81,3 +90,23 @@
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+      var title = document.getElementById('title').value;
+      var date = document.getElementById('date').value;
+      var description = document.querySelector('textarea[name="work_description[]"]').value; 
+
+      var errorMessage = document.getElementById('error_message');
+
+      errorMessage.innerText = '';
+
+      if (title.trim() === '' || date.trim() === '' || description.trim() === '') {
+          event.preventDefault();
+          document.getElementById('error_message').innerText = 'タイトル・作業日・作業説明は必須項目です。入力してください。';
+      }
+    });
+});
+</script>

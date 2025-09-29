@@ -2,12 +2,12 @@ class CreateMaintenances < ActiveRecord::Migration[6.1]
   def change
     create_table :maintenances do |t|
       t.string :title, null: false, default: ""
-      t.date :maintenance_day, null: false, default: nil
-      t.string :maintenance, null: false, default: ""
-      t.string :work_difficulty, null: false, default: ""
-      t.string :maintenance_tool
-      t.integer :work_pay
-      t.time :work_time, default: nil
+      t.date :date, null: false, default: nil
+      t.string :task, null: false, default: ""
+      t.string :difficulty
+      t.string :tool_images
+      t.integer :time
+      t.time :price
       t.string :related_information
       t.text :work_description
       t.boolean :is_active

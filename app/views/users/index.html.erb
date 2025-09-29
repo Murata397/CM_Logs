@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-5">
+    <div class="user-info">
+      <img src="<%= @user.profile_image_url %>" class="img-fluid" alt="User Image">
+      <h3>ユーザーネーム： <%= @user.name %></h3>
+      <p><%= @user.introduction %></p>
+      <p>自己紹介： <%= @user.introduction.present? ? @user.introduction : "" %></p>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+      <h2>投稿一覧</h2>
+    <% @maintenances.each do |maintenance| %>
+      <div class="post">
+        <h4>タイトル: <%= maintenance.title %></h4>
+        <p>作業内容: <%= maintenance.content %></p>
+        <p>難易度: <%= maintenance.difficulty %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
