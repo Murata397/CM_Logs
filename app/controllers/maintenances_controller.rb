@@ -5,21 +5,18 @@ class MaintenancesController < ApplicationController
 
   def create
     @maintenance = Maintenance.new(maintenance_params)
-    @maintenance.user_id = current_user
+
     if @maintenance.save
-      flash[:notive] = "You have created maintenance successfully."
+      flash[:notice] = "You have created maintenance successfully."
       redirect_to maintenance_path(@maintenance)
     else
-      flash[:notive] = "You have not created maintenance successfully."
-      @MaintenancesController = Maintenance.all
-      render 'index'
+      flash[:notice] = "You have not created maintenance successfully."
+      render 'new'
     end
   end
 
   def index
     @maintenances = Maintenance.all
-    @user = current_user
-    @maintenance = Maintenance.new
   end
 
   def show
@@ -30,7 +27,7 @@ class MaintenancesController < ApplicationController
 
   def edit
     @maintenance = Maintenance.find(params[:id])
-    if @maintenance.save != current_user
+    if @maintenance.user != current_user
       redirect_to maintenances_path
     end
   end
@@ -41,7 +38,7 @@ class MaintenancesController < ApplicationController
       flash[:notice] = "You have update maintenance successfully"
       redirect_to @maintenance
     else
-      flash[:notive] = "You have not update maintenance successfully."
+      flash[:notice] = "You have not update maintenance successfully."
       render 'edit'
     end
   end
@@ -55,6 +52,6 @@ class MaintenancesController < ApplicationController
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(:title)
+    params.require(:maintenance).permit(:title, :maintenance_day, :maintenance, :work_difficulty, :work_time, :work_pay, :tool_images => [], images: [ { :image => [], :description => [] } ], :related_information)
   end
 end

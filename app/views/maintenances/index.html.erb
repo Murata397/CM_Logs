@@ -1,1 +1,29 @@
-konnnitiwa
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h1>メンテナンス一覧</h1>
+      <table class="table table-honer table-inverse">
+        <thead class="thead-dark">
+          <tr>
+            <th>タイトル</th>
+            <th>作業日</th>
+            <th>作業内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @maintenances.present? %>
+            <% @maintenances.each do |maintenance| %>
+              <tr>
+                <td><%= maintenance.title %></td>
+                <td><%= maintenance.maintenance_day %></td>
+                <td><%= maintenance.maintenance %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
