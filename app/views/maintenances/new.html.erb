@@ -25,7 +25,7 @@
           <%= form.select :work_difficulty, ['簡単', '普通', '難しい'], {}, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= form.label :tool_images, '使用工具画像を追加（4つまで選択可）' %>
+          <%= form.label :tool_images, '使用工具画像' %>
           <%= form.file_field :tool_images, multiple: true, accept: "image/*", class: "form-control-file" %>
         </div>
         <div class="form-group">

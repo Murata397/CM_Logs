@@ -52,6 +52,6 @@ class MaintenancesController < ApplicationController
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(:title, :maintenance_day, :maintenance, :work_difficulty, :work_time, :work_pay, :tool_images => [], images: [ { :image => [], :description => [] } ], :related_information)
+    params.require(:maintenance).permit(:title, :maintenance_day, :maintenance, :work_difficulty, :work_time, :work_pay, :tool_images, :images , :related_information, :work_description)
   end
 end
