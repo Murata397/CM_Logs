@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_10_01_070851) do
+ActiveRecord::Schema.define(version: 2025_09_29_052434) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,17 +44,17 @@ ActiveRecord::Schema.define(version: 2025_10_01_070851) do
     t.string "title", default: "", null: false
     t.date "maintenance_day", null: false
     t.string "maintenance", default: "", null: false
-    t.string "work_difficulty", default: "", null: false
+    t.string "work_difficulty"
     t.string "maintenance_tool"
-    t.integer "work_pay"
-    t.time "work_time"
+    t.integer "work_time"
+    t.decimal "work_pay"
     t.string "related_information"
     t.text "work_description"
     t.boolean "is_active"
+    t.integer "user_id"
+    t.string "images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "images"
-    t.json "tool_images"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -75,8 +75,6 @@ ActiveRecord::Schema.define(version: 2025_10_01_070851) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "introduction"
-    t.string "image_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -5,8 +5,10 @@ class MaintenancesController < ApplicationController
 
   def create
     @maintenance = Maintenance.new(maintenance_params)
+    @maintenance.user_id = current_user.id
 
-    if @maintenance.save
+
+    if @maintenance.save!
       flash[:notice] = "You have created maintenance successfully."
       redirect_to maintenance_path(@maintenance)
     else
@@ -22,7 +24,7 @@ class MaintenancesController < ApplicationController
   def show
     @maintenance = Maintenance.find(params[:id])
     @user = @maintenance.user
-    @maintenance_new = Maintenanceaintenance.new
+    @maintenance_new = Maintenance.new
   end
 
   def edit
