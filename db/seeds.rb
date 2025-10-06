@@ -5,3 +5,37 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|
+  user.name = "Olivia"
+  user.password = "password"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
+end
+
+james = User.find_or_create_by!(email: "james@example.com") do |user|
+  user.name = "James"
+  user.password = "password"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")
+end
+
+lucas = User.find_or_create_by!(email: "lucas@example.com") do |user|
+  user.name = "Lucas"
+  user.password = "password"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")
+end
+Maintenance.find_or_create_by!(title: "オイル交換") do |maintenance|
+  maintenance.maintenance_day = Date.today
+  maintenance.maintenance = 'メンテナンス'
+  maintenance.user = olivia
+end
+
+Maintenance.find_or_create_by!(title: "タイヤ交換") do |maintenance|
+  maintenance.maintenance_day = Date.today
+  maintenance.maintenance = '日常点検'
+  maintenance.user = james
+end
+
+Maintenance.find_or_create_by!(title: "電球交換") do |maintenance|
+  maintenance.maintenance_day = Date.today
+  maintenance.maintenance = '法定点検'
+  maintenance.user = lucas
+end

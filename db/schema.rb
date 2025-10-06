@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2025_09_29_052434) do
     t.boolean "is_active"
     t.integer "user_id"
     t.string "images"
+    t.json "tool_images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,6 +74,8 @@ ActiveRecord::Schema.define(version: 2025_09_29_052434) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.text "introduction"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
