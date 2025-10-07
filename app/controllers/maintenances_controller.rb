@@ -41,7 +41,7 @@ class MaintenancesController < ApplicationController
       redirect_to @maintenance
     else
       flash[:notice] = "You have not update maintenance successfully."
-      render 'edit'
+      render 'index'
     end
   end
 

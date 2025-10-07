@@ -11,3 +11,9 @@ environment.plugins.prepend(
 )
 
 module.exports = environment
+
+environment.config.node = {
+  __dirname: true,
+  __filename: true,
+  global: true
+};

@@ -4,18 +4,16 @@
   <div class="profile">
     <img src="<%= @user.profile_image_url %>" style="max-width: 500px; max-height: 500px;" class="img-fluid" alt="ユーザーの画像">
     <table class="table table-striped">
-      <tr>
-        <th>ユーザー名前</th>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <th>自己紹介</th>
-        <td><%= @user.introduction %></td>
-      </tr>
+      <tbody>
+        <tr><th>ユーザー名前</th><th><%= @user.name %></th></tr>
+        <tr><th>自己紹介</th><th><%= @user.introduction %></th></tr>
+      </tbody>
     </table>
     <div class="d-flex justify-content-between">
-      <a href="/users/<%= current_user.id %>/edit" class="btn btn-primary">編集</a>
-      <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+      <a href="/users/<%= current_user.id %>/edit" class="btn btn-success btn-lg d-flex align-items-center" style="white-space: nowrap;">ユーザー編集</a>
+      <%= link_to '新規投稿', new_maintenance_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
+      <%= link_to '投稿一覧', maintenances_path(user_id: @user.id), class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
+      <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-lg align-items-center" %>
     </div>
   </div>
 </div>

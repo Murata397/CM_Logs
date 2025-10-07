@@ -14,10 +14,10 @@
         <tbody>
             <% @users.each do |user| %>
                 <tr>
-                    <td><img src="<%= @user.profile_image_url %>" class="img-fluid" alt="User Image"></td>
+                    <td><img src="<%= user.profile_image_url %>" class="img-fluid" alt="User Image"></td>
                     <td><%= user.name %></td>
                     <td><%= user.introduction %></td>
-                    <td><a href="<%= user_path(user) %>">Show</a></td>
+                    <td><%= link_to '詳細', user_path(user), class: 'btn btn-success' %></td>
                 </tr>
             <% end %>
         </tbody>
