@@ -5,13 +5,13 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user
     else
-      render :new
+      render 'new'
     end
   end
 
   def index
     @users = User.all
-    @maintenance = Maintenance
+    @user = current_user
   end
 
   def show
@@ -28,12 +28,16 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "You have update user successfully"
-      redirect_to user_path(@user)
+    if @user.id == current_user.id
+      if @user.update(user_params)
+        flash[:notice] = "You have updated user successfully."
+        redirect_to user_path(@user)
+      else
+        flash[:alert] = "error prohibited this obj from being saved:"
+        render :edit
+      end
     else
-      flash[:alert] = @user.errors.full_messages.join(', ')
-      render :edit
+      redirect_to user_path(current_user), alert: "You don't have permission to edit this user."
     end
   end
 
@@ -46,6 +50,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :profile_image, :introduction)
+    params.require(:user).permit(:name, :email, :password, :profile_image, :introduction,)
   end
 end

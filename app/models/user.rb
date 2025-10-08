@@ -8,12 +8,11 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 10 }
   validates :email, presence: true
-  validates :password, presence: true, length: { minimum: 6 }
   validates :introduction, length: { maximum: 50 }
   
-  def profile_image_url
+  def get_profile_image
     if profile_image.attached?
-      profile_image.variant(resize: '500x500').processed.url
+      profile_image
     else
       ActionController::Base.helpers.asset_path('no_image.jpg')
     end
