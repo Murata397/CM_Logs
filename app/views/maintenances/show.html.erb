@@ -27,6 +27,20 @@
         <% end %>
       </p>
       <p><strong>作業説明:</strong><%= @maintenance.work_description %></p>
+      <% if @added_images.present? %>
+       <p><strong>追加された作業画像:</strong>
+         <% @added_images.each do |image| %>
+            <%= image_tag url_for(image), class: "img-thumbnail", style: "width: 25%;" %>
+          <% end %>
+        </p>
+      <% end %>
+      <% if @added_descriptions.present? %>
+          <p><strong>追加された作業説明:</strong>
+            <% @added_descriptions.each do |description| %>
+              <p><%= description %></p>
+          <% end %>
+        </p>
+      <% end %>
       <p><strong>関連URL:</strong> <%= @maintenance.related_information %></p>
       
       <%= link_to "Edit", edit_maintenance_path(@maintenance), class: "btn btn-primary" %>

@@ -24,7 +24,8 @@ class MaintenancesController < ApplicationController
   def show
     @maintenance = Maintenance.find(params[:id])
     @user = @maintenance.user
-    @maintenance_new = Maintenance.new
+    @added_images = @maintenance.images 
+    @added_descriptions = @maintenance.descriptions
   end
 
   def edit
