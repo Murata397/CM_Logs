@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
           <%= form.label :tool_images, '使用工具画像' %>
-          <%= form.file_field :tool_images, multiple: true, accept: "image/*", class: "form-control-file" %>
+          <%= form.file_field :tool_images, class: "form-control-file", accept: "image/*" %>
         </div>
         <div class="form-group">
           <%= form.label :作業時間 %>
@@ -37,14 +37,15 @@
           <%= form.text_field :work_pay, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= form.fields_for :images do |image_fields| %>
-            <div class="image-fields">
-              <%= image_fields.file_field :image, multiple: true, class: "form-control-file" %>
-              <%= image_fields.text_area :description, class: "form-control", placeholder: "画像の説明" %>
-            </div>
-          <% end %>
-          <div class="add_field_button btn btn-primary">作業画像・説明を追加</div>
+          <%= form.label :images, '作業画像' %>
+          <%= form.file_field :images, class: "form-control-file", accept: "image/*" %>
         </div>
+        <div class="form-group">
+          <%= form.label :作業説明 %>
+          <%= form.text_field :work_description, class: "form-control" %>
+        </div>
+        <div class="add_field_button btn btn-primary">作業画像・説明を追加</div>
+        <div class="input_fields"></div>
         <div class="form-group">
           <%= form.label :関連URL %>
           <%= form.text_field :related_information, class: "form-control" %>
@@ -57,25 +58,29 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('form');
-    var inputFieldsWrap = document.querySelector('.image-fields');
+document.addEventListener('DOMContentLoaded', function() {
+  var addButton = document.querySelector('.add_field_button');
+  var inputFieldsWrap = document.querySelector('.input_fields');
+  var maxFields = 10; // 最大追加フォーム数
 
-    var addButton = document.querySelector('.add_field_button');
-    var x = 1;
-
-    addButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (x < 10) {
-        x++;
-        var newField = document.createElement('div');
-        newField.innerHTML = `
-          <div class="image-fields">
-              <input type="file" name="maintenance[images_attributes][${x}][image]" multiple class="form-control-file">
-              <textarea name="maintenance[images_attributes][${x}][description]" class="form-control" placeholder="画像の説明"></textarea>
-          </div>`;
-        inputFieldsWrap.appendChild(newField);
-      }
-    });
+  var x = 1;
+  addButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (x < maxFields) {
+      x++;
+      var newField = document.createElement('div');
+      newField.innerHTML = `
+        <div class="form-group">
+          <label for="maintenance_images_${x}">作業画像</label>
+          <input type="file" name="maintenance[images_attributes][${x}][image]" id="maintenance_images_${x}" class="form-control-file" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label for="maintenance_work_description_${x}">作業説明</label>
+          <input type="text" name="maintenance[images_attributes][${x}][description]" id="maintenance_work_description_${x}" class="form-control">
+        </div>
+      `;
+      inputFieldsWrap.appendChild(newField);
+    }
   });
+});
 </script>

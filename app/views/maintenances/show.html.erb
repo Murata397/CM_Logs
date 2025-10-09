@@ -1,30 +1,36 @@
+<p id="notice"><%= notice %></p>
+
 <div class="container">
-  <h1><%= @maintenance.title %></h1>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 offset-md-2">
+      <p><strong>タイトル:</strong><%= @maintenance.title %></p>
       <p><strong>作業日:</strong> <%= @maintenance.maintenance_day %></p>
       <p><strong>作業内容:</strong> <%= @maintenance.maintenance %></p>
       <p><strong>作業難易度:</strong> <%= @maintenance.work_difficulty %></p>
-      <p><strong>作業時間:</strong> <%= @maintenance.work_time %></p>
-      <p><strong>作業料金:</strong> <%= @maintenance.work_pay %></p>
-      <p><strong>関連URL:</strong> <%= @maintenance.related_information %></p>
-    </div>
-    <div class="col-md-6">
-      <h3>使用工具画像:</h3>
-      <% if @maintenance.tool_images.present? %>
-        <% @maintenance.tool_images.each do |image| %>
-          <%= image_tag image.url, class: "img-fluid" %>
+      <p><strong>使用工具画像:</strong>
+        <% if @maintenance.get_tool_images.present? %>
+          <%= image_tag @maintenance.get_tool_images, class: "img-fluid w-25", alt: "Tool Image" %>
+        <% else %>
+          <img src="<%= asset_path('no_image.jpg') %>" class="img-fluid" alt="No Image">
         <% end %>
-      <% else %>
-        <p>使用工具画像はありません。</p>
-      <% end %>
-    </div>
-    <div>
-      <h3>作業画像と説明:</h3>
-      <% @maintenance.images.each do |image| %>
-        <%= image_tag image.image.url, class: "img-fluid" %>
-        <p><strong>説明:</strong> <%= image.description %></p>
-      <% end %>
+      </p>
+      <p><strong>作業時間:</strong><%= @maintenance.work_time %></p>
+      <p><strong>作業料金:</strong><%= @maintenance.work_pay %></p>
+
+      <p><strong>作業画像:</strong>
+        <% if @maintenance.images.present? %>
+          <% @maintenance.images.each do |image| %>
+            <%= image_tag url_for(image), class: "img-thumbnail", style: "width: 25%;" %>
+          <% end %>
+        <% else %>
+          <img src="<%= asset_path('no_image.jpg') %>" class="img-fluid" alt="No Image">
+        <% end %>
+      </p>
+      <p><strong>作業説明:</strong><%= @maintenance.work_description %></p>
+      <p><strong>関連URL:</strong> <%= @maintenance.related_information %></p>
+      
+      <%= link_to "Edit", edit_maintenance_path(@maintenance), class: "btn btn-primary" %>
+      <%= link_to "Back", maintenances_path, class: "btn btn-secondary" %>
     </div>
   </div>
 </div>
