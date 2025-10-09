@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "seedの実行を開始"
+
 olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|
   user.name = "Olivia"
   user.password = "password"
@@ -46,3 +48,5 @@ Maintenance.find_or_create_by!(title: "電球交換") do |maintenance|
   maintenance.maintenance = '法定点検'
   maintenance.user = lucas
 end
+
+puts "seedの実行が完了しました。"
