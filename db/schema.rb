@@ -46,14 +46,14 @@ ActiveRecord::Schema.define(version: 2025_09_29_052434) do
     t.string "maintenance", default: "", null: false
     t.string "work_difficulty"
     t.string "maintenance_tool"
-    t.integer "work_time"
-    t.decimal "work_pay"
+    t.string "work_time"
+    t.string "work_pay"
     t.string "related_information"
     t.text "work_description"
     t.boolean "is_active"
     t.integer "user_id"
     t.string "images"
-    t.json "tool_images"
+    t.string "tool_images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

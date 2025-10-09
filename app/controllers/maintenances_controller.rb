@@ -8,7 +8,7 @@ class MaintenancesController < ApplicationController
     @maintenance.user_id = current_user.id
 
 
-    if @maintenance.save!
+    if @maintenance.save
       flash[:notice] = "You have created maintenance successfully."
       redirect_to maintenance_path(@maintenance)
     else
@@ -24,8 +24,7 @@ class MaintenancesController < ApplicationController
   def show
     @maintenance = Maintenance.find(params[:id])
     @user = @maintenance.user
-    @added_images = @maintenance.images 
-    @added_descriptions = @maintenance.descriptions
+    @maintenance_new = Maintenance.new
   end
 
   def edit
@@ -48,8 +47,12 @@ class MaintenancesController < ApplicationController
 
   def destroy
     @maintenance = Maintenance.find(params[:id])
-    @maintenance.destroy
-    redirect_to maintenances_path
+    if @maintenance.user == current_user
+      @maintenance.destroy
+      redirect_to maintenances_path, notice: "Maintenance deleted"
+    else
+      redirect_to maintenances_path, alert: "You do not have permission to delete other users' maintenance."
+    end
   end
 
   private

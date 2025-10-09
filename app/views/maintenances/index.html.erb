@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% if flash[:alert].present? %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
@@ -23,7 +27,6 @@
                 <td><%= maintenance.work_difficulty %></td>
                 <td><%= link_to '詳細', maintenance_path(maintenance), class: 'btn btn-info' %></td>
                 <td><%= link_to '編集', edit_maintenance_path(maintenance), class: 'btn btn-success' %></td>
-                <td><%= link_to '削除', maintenance_path(maintenance), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %></td>
                 <td><%= link_to 'ユーザー詳細', user_path(maintenance.user), class: 'btn btn-primary' %></td>
               </tr>
             <% end %>

@@ -1,6 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div id="error_message" style="color: red;"></div>
+  <% if @maintenance.errors.any? %>
+    <h2>An error has occurred:</h2>
+      <ul>
+        <% @maintenance.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
 
 
 <div class="container">
