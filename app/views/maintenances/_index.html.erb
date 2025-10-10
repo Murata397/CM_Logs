@@ -1,14 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<% if flash[:alert].present? %>
-  <p class="alert"><%= flash[:alert] %></p>
-<% end %>
-
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h1>Maintenance List</h1>
-      <%= render 'searches/form', maintenances: @maintenances %> 
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
@@ -19,18 +11,14 @@
           </tr>
         </thead>
         <tbody>
-          <% if @maintenances.present? %>
-            <% @maintenances.each do |maintenance| %>
+          <% maintenances.each do |maintenance| %>
               <tr>
                 <td><%= maintenance.title %></td>
                 <td><%= maintenance.maintenance_day %></td>
                 <td><%= maintenance.maintenance %></td>
                 <td><%= maintenance.work_difficulty %></td>
                 <td><%= link_to '詳細', maintenance_path(maintenance), class: 'btn btn-info' %></td>
-                <td><%= link_to '編集', edit_maintenance_path(maintenance), class: 'btn btn-success' %></td>
-                <td><%= link_to 'ユーザー詳細', user_path(maintenance.user), class: 'btn btn-primary' %></td>
               </tr>
-            <% end %>
           <% end %>
         </tbody>
       </table>

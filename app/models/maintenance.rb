@@ -26,4 +26,16 @@ class Maintenance < ApplicationRecord
       ActionController::Base.helpers.asset_path('no_image.jpg')
     end
   end
+
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Maintenance.where(title: content)
+    elsif method == 'forward'
+      Maintenance.where('title LIKE ?', content+'%')
+    elsif method == 'backward'
+      Maintenance.where('title LIKE ?', '%'+content)
+    else
+      Maintenance.where('title LIKE ?', '%'+content+'%')
+    end
+  end
 end

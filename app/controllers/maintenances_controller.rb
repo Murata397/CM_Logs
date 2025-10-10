@@ -1,4 +1,6 @@
 class MaintenancesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @maintenance = Maintenance.new
   end
