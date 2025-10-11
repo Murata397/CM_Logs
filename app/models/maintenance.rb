@@ -4,13 +4,14 @@ class Maintenance < ApplicationRecord
   has_many_attached :images
   has_one_attached :tool_images
   has_many :work_descriptions
+  has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
   validates :maintenance_day, presence: true
   validates :maintenance, presence: true
 
   def index
-    @maintenances = Maintenance.select(:id, :title, :maintenance_day, :maintenance)
+    @maintenances = Maintenance.select(:id, :title, :maintenance_day, :maintenance, :work_difficulty)
   end
   def get_tool_images
     if tool_images
@@ -38,4 +39,9 @@ class Maintenance < ApplicationRecord
       Maintenance.where('title LIKE ?', '%'+content+'%')
     end
   end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+  
 end

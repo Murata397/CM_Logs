@@ -32,6 +32,7 @@ class MaintenancesController < ApplicationController
   def edit
     @maintenance = Maintenance.find(params[:id])
     if @maintenance.user != current_user
+      flash[:notice] = "You cannot renew another user's maintenance."
       redirect_to maintenances_path
     end
   end

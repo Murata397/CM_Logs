@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :maintenances
+  has_many :favorites, dependent: :destroy
   has_many :posts, class_name: 'Post'
   has_one_attached :profile_image
 
