@@ -27,6 +27,7 @@ class MaintenancesController < ApplicationController
     @maintenance = Maintenance.find(params[:id])
     @user = @maintenance.user
     @maintenance_new = Maintenance.new
+    @maintenance_comment = MaintenanceComment.new
   end
 
   def edit

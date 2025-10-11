@@ -4,6 +4,7 @@ class Maintenance < ApplicationRecord
   has_many_attached :images
   has_one_attached :tool_images
   has_many :work_descriptions
+  has_many :maintenance_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   validates :title, presence: true

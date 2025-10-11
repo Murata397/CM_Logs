@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-6">
       <p><strong>タイトル:</strong><%= @maintenance.title %></p>
       <p><strong>作業日:</strong> <%= @maintenance.maintenance_day %></p>
       <p><strong>作業内容:</strong> <%= @maintenance.maintenance %></p>
@@ -33,5 +33,17 @@
       <%= link_to "Back", maintenances_path, class: "btn btn-secondary" %>
       <%= link_to '削除', maintenance_path(@maintenance), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
     </div>
+    <div class='col-md-6'>
+      <table>
+        <tr>
+         <td>コメント数: <%= @maintenance.maintenance_comments.count %></td>
+          <% if @maintenance.user == current_user %><% end %>
+        </tr>
+      </table>
+
+      <%= render "maintenance_comments/index", maintenance: @maintenance %>
+      <%= render "maintenance_comments/form", maintenance: @maintenance, maintenance_comment: @maintenance_comment %>
+
+      </div>
   </div>
 </div>

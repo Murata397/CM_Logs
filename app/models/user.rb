@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :maintenances
   has_many :favorites, dependent: :destroy
   has_many :posts, class_name: 'Post'
+  has_many :maintenance_comments, dependent: :destroy
   has_one_attached :profile_image
 
   validates :name, presence: true, length: { maximum: 10 }

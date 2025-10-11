@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
 
   resources :maintenances, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :maintenance_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
   resources :users, only: [:index, :show, :edit, :update]
