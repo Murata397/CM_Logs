@@ -1,4 +1,4 @@
-class MaintenanceCommentsController < ApplicationController
+class Public::MaintenanceCommentsController < ApplicationController
   def create
     maintenance = Maintenance.find(params[:maintenance_id])
     comment = current_user.maintenance_comments.new(maintenance_comment_params)

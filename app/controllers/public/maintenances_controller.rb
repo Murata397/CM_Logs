@@ -1,4 +1,4 @@
-class MaintenancesController < ApplicationController
+class Public::MaintenancesController < ApplicationController
   before_action :authenticate_user!
 
   def new

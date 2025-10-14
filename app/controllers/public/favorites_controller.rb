@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class Public::FavoritesController < ApplicationController
   def create
     maintenance = Maintenance.find(params[:maintenance_id])
     favorite = current_user.favorites.new(maintenance_id: maintenance.id)
