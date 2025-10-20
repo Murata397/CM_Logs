@@ -55,7 +55,7 @@ class Public::MaintenancesController < ApplicationController
       @maintenance.destroy
       redirect_to maintenances_path, notice: "Maintenance deleted"
     else
-      redirect_to maintenances_path, alert: "You do not have permission to delete other users' maintenance."
+      redirect_to maintenances_path, alert: "You do not have permission to delete other user's maintenance."
     end
   end
 
