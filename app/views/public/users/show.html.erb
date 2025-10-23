@@ -22,7 +22,7 @@
     <div class="d-flex justify-content-between">
       <a href="/users/<%= current_user.id %>/edit" class="btn btn-success btn-lg d-flex align-items-center" style="white-space: nowrap;">ユーザー編集</a>
       <%= link_to '新規投稿', new_maintenance_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
-      <%= link_to '投稿一覧', maintenances_path(user_id: @user.id), class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
+      <%= link_to '投稿一覧', maintenances_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
       <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-lg align-items-center" %>
     </div>
   </div>
