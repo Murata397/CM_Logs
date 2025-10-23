@@ -1,4 +1,4 @@
-class CarsController < ApplicationController
+class Public::CarsController < ApplicationController
 
   def new
     @car = Car.new
