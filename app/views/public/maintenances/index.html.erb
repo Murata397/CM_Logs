@@ -29,7 +29,7 @@
                 <td><%= render "public/favorites/btn", maintenance: maintenance %></td>
                 <td><%= link_to '詳細', maintenance_path(maintenance), class: 'btn btn-info' %></td>
                 <td><%= link_to '編集', edit_maintenance_path(maintenance), class: 'btn btn-success' %></td>
-                <td><%= link_to 'ユーザー', user_path(maintenance.user), class: 'btn btn-primary' %></td>
+                <td><%= link_to 'ユーザー', user_path(maintenance.user_id), class: 'btn btn-primary' %></td>
                 <td>コメント数: <%= maintenance.maintenance_comments.count %></td>
               </tr>
             <% end %>
