@@ -21,7 +21,6 @@ class Public::MaintenancesController < ApplicationController
 
   def index
     @maintenances = Maintenance.all
-    @user_id = current_user.id
   end
 
   def show
