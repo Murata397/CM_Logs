@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :maintenances
+  has_many :maintenances, dependent: :destroy
   has_many :cars
   has_many :favorites, dependent: :destroy
   has_many :posts, class_name: 'Post'
