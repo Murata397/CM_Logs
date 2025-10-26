@@ -3,9 +3,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :maintenances, dependent: :destroy
-  has_many :cars
+  has_many :cars, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :posts, class_name: 'Post'
+  has_many :posts, class_name: 'Post', dependent: :destroy
   has_many :maintenance_comments, dependent: :destroy
   has_one_attached :profile_image
 

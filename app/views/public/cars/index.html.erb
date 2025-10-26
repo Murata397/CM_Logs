@@ -4,6 +4,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <h1>Car List</h1>
+      <h2><%= link_to '整備一覧', maintenances_path, class: 'btn btn-primary' %></h2>
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
@@ -14,3 +15,25 @@
             <th>purpose</th>
           </tr>
         </thead>
+        <tbody>
+          <% if @cars.present? %>
+            <% @cars.each do |car| %>
+              <tr>
+                <td class="w-25">
+                  <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
+                </td>
+                <td><%= car.manufacturer_name %></td>
+                <td><%= car.car_model %></td>
+                <td><%= car.odometer %></td>
+                <td><%= car.purpose %></td>
+                <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
+                <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
+                <td></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -54,10 +54,11 @@ ActiveRecord::Schema.define(version: 2025_10_20_004617) do
 
   create_table "cars", force: :cascade do |t|
     t.integer "user_id"
-    t.string "manufacturer_name"
-    t.string "car_name"
-    t.string "odometer"
-    t.string "purpose"
+    t.string "car_image"
+    t.string "manufacturer_name", null: false
+    t.string "car_model", null: false
+    t.string "odometer", null: false
+    t.string "purpose", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
