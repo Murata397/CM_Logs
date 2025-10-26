@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %>
+
+<div id="error_message" style="color: red;"></div>
+  <% if @car.errors.any? %>
+    <h2>An error has occurred:</h2>
+      <ul>
+        <% @car.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1>Editing Car</h1>
+      <%= form_for(@car) do |f| %>
+        <div class="form-group">
+          <%= f.label :car_image, '車両写真' %>
+          <%= f.file_field :car_image, class: "form-control-file", accept: "image/*" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :メーカー %>
+          <%= f.text_field :manufacturer_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :車名 %>
+          <%= f.text_field :car_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :型式 %>
+          <%= f.text_field :car_model, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :総走行距離 %>
+          <%= f.text_field :odometer, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :使用用途 %>
+          <%= f.select :purpose, ['', '通勤・通学', '日常・レジャー', 'サーキット', 'オフロード', 'コレクション'], {}, class: "form-control" %>
+        </div>
+        <button type="submit" class="btn btn-primary">更新</button>
+      <% end %>
+    </div>
+  </div>
+</div>

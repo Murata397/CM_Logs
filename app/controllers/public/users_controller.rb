@@ -18,6 +18,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @current_user = current_user
+    @cars = @user.cars
   end
 
   def edit

@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2025_10_20_004617) do
     t.string "car_image"
     t.string "manufacturer_name", null: false
     t.string "car_model", null: false
+    t.string "car_name", null: false
     t.string "odometer", null: false
     t.string "purpose", null: false
     t.datetime "created_at", precision: 6, null: false

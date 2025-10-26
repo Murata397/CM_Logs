@@ -21,6 +21,12 @@ class Public::MaintenancesController < ApplicationController
 
   def index
     @maintenances = Maintenance.all
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @maintenances = @user.maintenances
+    else
+     render 'index'
+    end
   end
 
   def show

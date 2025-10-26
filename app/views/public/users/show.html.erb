@@ -1,29 +1,62 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-8 offset-md-2">
-    <h1>User</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr> 
-          <th>image</th>
-          <th>name</th>
-          <th>introduction</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="w-25">
-            <%= image_tag @user.get_profile_image, class:"img-fluid", alt:"User Image" %>
-          </td>
-          <td><%= @user.name %></td>
-          <td><%= @user.introduction %></td>
-      </tbody>
-    </table>
-    <div class="d-flex justify-content-between">
-      <a href="/users/<%= current_user.id %>/edit" class="btn btn-success btn-lg d-flex align-items-center" style="white-space: nowrap;">ユーザー編集</a>
-      <%= link_to '新規投稿', new_maintenance_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
-      <%= link_to '投稿一覧', maintenances_path(user_id: @user.id), class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
-      <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-lg align-items-center" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>User</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr> 
+            <th>image</th>
+            <th>name</th>
+            <th>introduction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="w-25">
+              <%= image_tag @user.get_profile_image, class:"img-fluid", alt:"User Image" %>
+            </td>
+            <td><%= @user.name %></td>
+            <td><%= @user.introduction %></td>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between">
+        <a href="/users/<%= current_user.id %>/edit" class="btn btn-success btn-lg d-flex align-items-center" style="white-space: nowrap;">ユーザー編集</a>
+        <%= link_to '新規投稿', new_maintenance_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
+        <%= link_to '所有車登録', new_car_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
+        <%= link_to '投稿一覧', maintenances_path(user_id: @user.id), class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
+        <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-lg align-items-center" %>
+      </div>
+      <h1>Cars</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>manufacturer</th>
+            <th>name</th>
+            <th>model</th>
+            <th>odometer</th>
+            <th>purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cars.each do |car| %>
+            <tr>
+              <td class="w-25">
+                <%= image_tag car.car_image, class: "img-fluid", alt: "Car Image" %>
+              </td>
+              <td><%= car.manufacturer_name %></td>
+              <td><%= car.car_name %></td>
+              <td><%= car.car_model %></td>
+              <td><%= car.odometer %></td>
+              <td><%= car.purpose %></td>
+              <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
+              <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

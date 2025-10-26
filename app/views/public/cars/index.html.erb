@@ -2,14 +2,17 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-12">
       <h1>Car List</h1>
-      <h2><%= link_to '整備一覧', maintenances_path, class: 'btn btn-primary' %></h2>
+      <h2>
+        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-primary' %>
+      </h2>
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
             <th>image</th>
             <th>manufacturer</th>
+            <th>name</th>
             <th>model</th>
             <th>odometer</th>
             <th>purpose</th>
@@ -23,12 +26,13 @@
                   <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
                 </td>
                 <td><%= car.manufacturer_name %></td>
+                <td><%= car.car_name %></td>
                 <td><%= car.car_model %></td>
                 <td><%= car.odometer %></td>
                 <td><%= car.purpose %></td>
                 <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
                 <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
-                <td></td>
+                <td><%= link_to 'ユーザー', user_path(car.user_id), class: 'btn btn-primary' %></td>
               </tr>
             <% end %>
           <% end %>

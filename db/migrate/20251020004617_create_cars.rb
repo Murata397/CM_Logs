@@ -6,6 +6,7 @@ class CreateCars < ActiveRecord::Migration[6.1]
       t.string :car_image
       t.string :manufacturer_name, null: false
       t.string :car_model, null: false
+      t.string :car_name, null: false
       t.string :odometer, null: false
       t.string :purpose, null: false
       t.timestamps

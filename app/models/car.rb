@@ -5,6 +5,7 @@ class Car < ApplicationRecord
 
   validates :car_image, presence: true
   validates :manufacturer_name, presence: true
+  validates :car_name, presence: true
   validates :car_model, presence: true
   validates :odometer, presence: true
   validates :purpose, presence: true
