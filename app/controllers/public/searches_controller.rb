@@ -7,8 +7,10 @@ class Public::SearchesController < ApplicationController
     @method = params[:method]
     if @model == 'user'
       @records = User.search_for(@content, @method)
-    else
+    elsif @model == 'maintenance'
       @records = Maintenance.search_for(@content, @method)
+    else
+      @records = Car.search_for(@content, @method)
     end
   end
 end

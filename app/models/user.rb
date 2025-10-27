@@ -26,7 +26,7 @@ class User < ApplicationRecord
       User.where(name: content)
     elsif method == 'forward'
       User.where('name LIKE ?', content + '%')
-    elsif method == 'backword'
+    elsif method == 'backward'
       User.where('name LIKE ?', '%' + content)
     else
       User.where('name LIKE ?', '%' + content + '%')

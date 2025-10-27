@@ -1,6 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-8 offset-md-2">
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
@@ -13,10 +11,12 @@
         <tbody>
           <% maintenances.each do |maintenance| %>
               <tr>
+                <td><%= maintenance.car.car_name %></td>
                 <td><%= maintenance.title %></td>
                 <td><%= maintenance.maintenance_day %></td>
                 <td><%= maintenance.maintenance %></td>
                 <td><%= maintenance.work_difficulty %></td>
+                <td><%= render "public/favorites/btn", maintenance: maintenance %></td>
                 <td><%= link_to '詳細', maintenance_path(maintenance), class: 'btn btn-info' %></td>
               </tr>
           <% end %>

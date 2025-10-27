@@ -1,13 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Car List</h1>
-      <%= render 'public/searches/form', cars: @cars %> 
-      <h2>
-        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-primary' %>
-      </h2>
+    <div class="col-md-8 offset-md-2">
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
@@ -20,8 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <% if @cars.present? %>
-            <% @cars.each do |car| %>
+            <% cars.each do |car| %>
               <tr>
                 <td class="w-25">
                   <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
@@ -32,11 +22,8 @@
                 <td><%= car.odometer %></td>
                 <td><%= car.purpose %></td>
                 <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
-                <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
-                <td><%= link_to 'ユーザー', user_path(car.user_id), class: 'btn btn-primary' %></td>
               </tr>
             <% end %>
-          <% end %>
         </tbody>
       </table>
     </div>

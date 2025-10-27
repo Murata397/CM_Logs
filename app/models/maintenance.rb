@@ -32,13 +32,13 @@ class Maintenance < ApplicationRecord
 
   def self.search_for(content, method)
     if method == 'perfect'
-      Maintenance.where(title: content)
+      Maintenance.joins(:car).where('maintenances.title LIKE ? OR cars.car_name LIKE ?', "%#{content}%", "%#{content}%")
     elsif method == 'forward'
-      Maintenance.where('title LIKE ?', content+'%')
+      Maintenance.joins(:car).where('maintenances.title LIKE ? OR cars.car_name LIKE ?', "#{content}%", "#{content}%")
     elsif method == 'backward'
-      Maintenance.where('title LIKE ?', '%'+content)
+      Maintenance.joins(:car).where('maintenances.title LIKE ? OR cars.car_name LIKE ?', "%#{content}", "%#{content}")
     else
-      Maintenance.where('title LIKE ?', '%'+content+'%')
+      Maintenance.joins(:car).where('maintenances.title LIKE ? OR cars.car_name LIKE ?', "%#{content}%", "%#{content}%")
     end
   end
 
