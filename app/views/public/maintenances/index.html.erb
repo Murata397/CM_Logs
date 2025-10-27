@@ -6,12 +6,13 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-12">
       <h1>Maintenance List</h1>
       <%= render 'public/searches/form', maintenances: @maintenances %> 
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
+            <th>車種</th>
             <th>タイトル</th>
             <th>作業日</th>
             <th>作業内容</th>
@@ -22,6 +23,7 @@
           <% if @maintenances.present? %>
             <% @maintenances.each do |maintenance| %>
               <tr>
+                <td><%= maintenance.car.car_name %></td>
                 <td><%= maintenance.title %></td>
                 <td><%= maintenance.maintenance_day %></td>
                 <td><%= maintenance.maintenance %></td>

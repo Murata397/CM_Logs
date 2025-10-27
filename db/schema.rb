@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2025_10_20_004617) do
     t.integer "user_id"
     t.string "images"
     t.string "tool_images"
+    t.integer "car_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

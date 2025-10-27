@@ -15,6 +15,7 @@ class CreateMaintenances < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.string :images
       t.string :tool_images
+      t.integer :car_id
 
       t.timestamps
     end

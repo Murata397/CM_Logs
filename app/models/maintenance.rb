@@ -1,6 +1,7 @@
 class Maintenance < ApplicationRecord
 
   belongs_to :user
+  belongs_to :car
   has_many_attached :images
   has_one_attached :tool_images
   has_many :work_descriptions

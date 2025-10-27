@@ -21,6 +21,7 @@ class Public::MaintenancesController < ApplicationController
 
   def index
     @maintenances = Maintenance.all
+    @maintenances = Maintenance.includes(:car).all
     if params[:user_id].present?
       @user = User.find(params[:user_id])
       @maintenances = @user.maintenances
@@ -68,6 +69,6 @@ class Public::MaintenancesController < ApplicationController
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(:title, :maintenance_day, :maintenance, :work_difficulty, :work_time, :work_pay, :tool_images, :images , :related_information, :work_description)
+    params.require(:maintenance).permit(:title, :maintenance_day, :maintenance, :work_difficulty, :work_time, :work_pay, :tool_images, :images , :related_information, :work_description, :car_id)
   end
 end
