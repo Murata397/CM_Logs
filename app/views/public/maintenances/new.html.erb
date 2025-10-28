@@ -19,7 +19,7 @@
       <%= form_for(@maintenance) do |f| %>
         <div class="form-group">
           <%= f.label :car_id, "車両を選択" %>
-          <%= f.collection_select :car_id, Car.all, :id, :car_model, { prompt: "車両を選択してください" }, class: "form-control" %>
+          <%= f.collection_select :car_id, current_user.cars, :id, :car_model, { prompt: "車両を選択してください" }, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :タイトル %>
@@ -31,11 +31,11 @@
         </div>
         <div class="form-group">
           <%= f.label :作業内容 %>
-          <%= f.select :maintenance, ['日常点検', '法定点検', 'チューニング', '洗車', 'メンテナンス'], {}, class: "form-control" %>
+          <%= f.select :maintenance, ['', '日常点検', '法定点検', 'チューニング', '洗車', 'メンテナンス'], {}, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :作業難易度 %>
-          <%= f.select :work_difficulty, ['簡単', '普通', '難しい'], {}, class: "form-control" %>
+          <%= f.select :work_difficulty, ['', '簡単', '普通', '難しい'], {}, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :tool_images, '使用工具画像' %>

@@ -1,28 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-8 offset-md-2">
-    <h1>Users List</h1>
-    <%= render 'public/searches/form', user: @user %> 
-    <table class="table table-honor table-inverse">
-        <thead>
-            <tr>
-                <th>image</th>
-                <th>name</th>
-                <th>introduction</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @users.each do |user| %>
-                <tr>
-                    <td class="w-25">
-                      <%= image_tag user.get_profile_image, class:"img-fluid", alt:"User Image" %>
-                    </td>
-                    <td><%= user.name %></td>
-                    <td><%= user.introduction %></td>
-                    <td><%= link_to '詳細', user_path(user), class: 'btn btn-success' %></td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Users List</h1>
+      <%= render 'public/searches/form', user: @user %>
+      <h2>
+        <%= link_to '新規投稿', href="/maintenances/new", class: 'btn btn-primary' %>
+        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-primary' %>
+      </h2>
+      <table class="table table-honor table-inverse">
+          <thead>
+              <tr>
+                  <th>image</th>
+                  <th>name</th>
+                  <th>introduction</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody>
+              <% @users.each do |user| %>
+                  <tr>
+                      <td class="w-25">
+                        <%= image_tag user.get_profile_image, class:"img-fluid", alt:"User Image" %>
+                      </td>
+                      <td><%= user.name %></td>
+                      <td><%= user.introduction %></td>
+                      <td><%= link_to '詳細', user_path(user), class: 'btn btn-success' %></td>
+                  </tr>
+              <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
 </div>

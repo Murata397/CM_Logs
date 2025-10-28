@@ -11,6 +11,7 @@ class Maintenance < ApplicationRecord
   validates :title, presence: true
   validates :maintenance_day, presence: true
   validates :maintenance, presence: true
+  validates :work_difficulty, presence: true
 
   def index
     @maintenances = Maintenance.select(:id, :title, :maintenance_day, :maintenance, :work_difficulty)
