@@ -21,9 +21,9 @@ class Public::FuelEfficiencyController < ApplicationController
   def index
     if params[:user_id].present?
       @user = User.find(params[:user_id])
-      @fuel_efficiencies = @user.fuel_efficiencies.includes(:car)
+      @fuel_efficiency = @user.fuel_efficiency.includes(:car)
     else
-      @fuel_efficiencies = current_user.fuel_efficiencies.includes(:car)
+      @fuel_efficiency = current_user.fuel_efficiency.includes(:car)
     end
   end
 
