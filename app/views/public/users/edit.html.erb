@@ -18,7 +18,8 @@
           <%= f.text_area :introduction, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.submit "Update User", class: "btn btn-secondary", data: { disable_with: "Update User" } %>
+          <%= f.submit "ユーザー更新", class: "btn btn-primary", data: { disable_with: "Update User" } %>
+          <%= link_to "マイページ", user_path(current_user), class: "btn btn-secondary" %>
         </div>
       <% end %>
     </div>

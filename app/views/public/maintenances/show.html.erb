@@ -29,8 +29,8 @@
       <p><strong>作業説明:</strong><%= @maintenance.work_description %></p>
       <p><strong>関連URL:</strong> <%= @maintenance.related_information %></p>
       
-      <%= link_to "Edit", edit_maintenance_path(@maintenance), class: "btn btn-primary" %>
-      <%= link_to "Back", maintenances_path, class: "btn btn-secondary" %>
+      <%= link_to "更新", edit_maintenance_path(@maintenance), class: "btn btn-primary" %>
+      <%= link_to "一覧", maintenances_path, class: "btn btn-secondary" %>
       <%= link_to '削除', maintenance_path(@maintenance), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
     </div>
     <div class='col-md-6'>

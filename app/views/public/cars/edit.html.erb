@@ -41,6 +41,7 @@
           <%= f.select :purpose, ['', '通勤・通学', '日常・レジャー', 'サーキット', 'オフロード', 'コレクション'], {}, class: "form-control" %>
         </div>
         <button type="submit" class="btn btn-primary">更新</button>
+        <td><%= link_to "戻る", cars_path, class: "btn btn-secondary" %></td>
       <% end %>
     </div>
   </div>

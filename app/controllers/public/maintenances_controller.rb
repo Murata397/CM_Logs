@@ -9,7 +9,6 @@ class Public::MaintenancesController < ApplicationController
     @maintenance = Maintenance.new(maintenance_params)
     @maintenance.user_id = current_user.id
 
-
     if @maintenance.save
       flash[:notice] = "You have created maintenance successfully."
       redirect_to maintenance_path(@maintenance)
@@ -41,7 +40,7 @@ class Public::MaintenancesController < ApplicationController
     @maintenance = Maintenance.find(params[:id])
     if @maintenance.user != current_user
       flash[:notice] = "You cannot renew another user's maintenance."
-      redirect_to maintenances_path
+      redirect_to maintenances_path(@maintenance)
     end
   end
 
@@ -52,7 +51,7 @@ class Public::MaintenancesController < ApplicationController
       redirect_to @maintenance
     else
       flash[:notice] = "You have not update maintenance successfully."
-      render 'index'
+      render 'edit'
     end
   end
 

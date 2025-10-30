@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_10_20_004617) do
+ActiveRecord::Schema.define(version: 2025_10_30_004024) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,20 @@ ActiveRecord::Schema.define(version: 2025_10_20_004617) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "maintenance_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fuel_efficiencies", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "car_id"
+    t.string "title", default: "", null: false
+    t.date "refuelin_day"
+    t.string "odometer", default: ""
+    t.string "tripmeter", default: "", null: false
+    t.string "fuel", default: "", null: false
+    t.string "fuel_efficiency", default: "", null: false
+    t.string "fuel_type", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

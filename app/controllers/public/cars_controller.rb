@@ -31,7 +31,7 @@ class Public::CarsController < ApplicationController
     @car = Car.find(params[:id])
     if @car.user != current_user
       flash[:notice] = "You cannot renew another use's car."
-      redirect_to cars_path
+      redirect_to cars_path(@car)
     end
   end
 
