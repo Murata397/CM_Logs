@@ -57,9 +57,9 @@ class Public::FuelEfficienciesController < ApplicationController
     @fuel_efficiency = FuelEfficiency.find(params[:id])
     if @fuel_efficiency.user == current_user
       @fuel_efficiency.destroy
-      redirect_to fuel_efficiency_path, notice: "Fuel_Efficiency deleted"
+      redirect_to fuel_efficiencies_path, notice: "Fuel_Efficiency deleted"
     else
-      redirect_to fuel_efficiency_path, alert: "You do not have permission to delete other user's fuel_efficiency."
+      redirect_to fuel_efficiencies_path, alert: "You do not have permission to delete other user's fuel_efficiency."
     end
   end
 

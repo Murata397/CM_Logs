@@ -3,12 +3,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h1>Sign up</h1>
+      <h1>新規登録</h1>
         <%= form_with model: @user, url: user_registration_path do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field"
-          <%= f.label :name %><br>
+          <%= f.label :ユーザー名 %><br>
           <%= f.text_field :name %>
         </div>
 
@@ -18,24 +18,24 @@
         </div>
 
         <div class="field">
-           <%= f.label :password %>
+           <%= f.label :パスワード %>
            <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
 
         <div class="field">
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :確認パスワード %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Sign up" %>
+          <%= f.submit "登録" %>
           </div>
         <% end %>
 
-        <%= render "devise/shared/links" %>
+        <%= render "public/shared/links" %>
     </div>
   </div>
 </div>

@@ -4,12 +4,17 @@
   <div class="row">
     <div class="col-md-12">
       <h1>User</h1>
+      <h2>
+        <%= link_to '新規投稿', new_maintenance_path, class: 'btn btn-primary' %>
+        <%= link_to '所有車登録', new_car_path, class: 'btn btn-primary' %>
+        <%= link_to '燃費情報登録', href="/fuel_efficiencies/new", class: 'btn btn-primary' %>
+      </h2>
       <table class="table table-striped">
         <thead>
           <tr> 
             <th>image</th>
-            <th>name</th>
-            <th>introduction</th>
+            <th>ユーザー名</th>
+            <th>自己紹介</th>
           </tr>
         </thead>
         <tbody>
@@ -21,23 +26,19 @@
             <td><%= @user.introduction %></td>
         </tbody>
       </table>
-      <div class="d-flex justify-content-between">
-        <a href="/users/<%= current_user.id %>/edit" class="btn btn-success btn-lg d-flex align-items-center" style="white-space: nowrap;">ユーザー編集</a>
-        <%= link_to '新規投稿', new_maintenance_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
-        <%= link_to '所有車登録', new_car_path, class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
-        <%= link_to '投稿一覧', maintenances_path(user_id: @user.id), class: 'btn btn-primary btn-lg mt-3 align-items-center' %>
-        <%= button_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-lg align-items-center" %>
-      </div>
+        <%= link_to 'ユーザー編集', edit_user_path(current_user), class: 'btn btn-success' %>
+        <%= link_to '投稿一覧', maintenances_path(user_id: @user.id), class: 'btn btn-secondary' %>
+        <%= link_to '燃費情報', fuel_efficiencies_path, class: 'btn btn-secondary' %>
       <h1>Cars</h1>
       <table class="table table-striped">
         <thead>
           <tr>
             <th>image</th>
-            <th>manufacturer</th>
-            <th>name</th>
-            <th>model</th>
-            <th>odometer</th>
-            <th>purpose</th>
+            <th>メーカー</th>
+            <th>車名</th>
+            <th>型式</th>
+            <th>総走行距離</th>
+            <th>使用用途</th>
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@
           <% end %>
         </tbody>
       </table>
+      
     </div>
   </div>
 </div>

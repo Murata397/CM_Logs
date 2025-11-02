@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-honer table-inverse">
+        <thead>
+          <tr>
+            <th><strong>給油日</strong></th>
+            <th><strong>総走行距離</strong></th>
+            <th><strong>走行距離</strong></th>
+            <th><strong>給油量</strong></th>
+            <th><strong>油種</strong></th>
+            <th><strong>燃費</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @fuel_efficiency.refuelin_day %></td>
+            <td><%= @fuel_efficiency.odometer %></td>
+            <td><%= @fuel_efficiency.tripmeter %></td>
+            <td><%= @fuel_efficiency.fuel %></td>
+            <td><%= @fuel_efficiency.fuel_type %></td>
+            <td><%= @fuel_efficiency.fuel_efficiency %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "編集", edit_fuel_efficiency_path(@fuel_efficiency), class: "btn btn-primary" %>
+      <%= link_to "一覧", fuel_efficiencies_path, class: "btn btn-secondary" %>
+      <%= link_to '削除', fuel_efficiency_path(@fuel_efficiency), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

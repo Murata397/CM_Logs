@@ -43,7 +43,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def unsubscribe
+  def destroy
     @user = current_user
     @user.destroy
     sign_out @user

@@ -3,32 +3,33 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-    <table class="table table-honer table-inverse">
-      <thead>
-        <tr>
-          <th><strong>image</strong></th>
-          <th><strong>manufacturer</strong></th>
-          <th><strong>name</strong></th>
-          <th><strong>model</strong></th>
-          <th><strong>odometer</strong></th>
-          <th><strong>purpose</strong></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="w-25">
-             <%= image_tag @car.car_image, class:"img-fluid", alt:"Car Image" %>
-          </td>
-          <td><%= @car.manufacturer_name %></td>
-          <td><%= @car.car_name %></td>
-          <td><%= @car.car_model %></td>
-          <td><%= @car.odometer %></td>
-          <td><%= @car.purpose %></td>
-          <td><%= link_to "編集", edit_car_path(@car), class: "btn btn-primary" %></td>
-          <td><%= link_to "一覧", cars_path, class: "btn btn-secondary" %></td>
-          <td><%= link_to '削除', car_path(@car), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %></td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="table table-honer table-inverse">
+        <thead>
+          <tr>
+            <th><strong>image</strong></th>
+            <th><strong>メーカー</strong></th>
+            <th><strong>車名</strong></th>
+            <th><strong>型式</strong></th>
+            <th><strong>総走行距離</strong></th>
+            <th><strong>使用用途</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="w-25">
+               <%= image_tag @car.car_image, class:"img-fluid", alt:"Car Image" %>
+            </td>
+            <td><%= @car.manufacturer_name %></td>
+           <td><%= @car.car_name %></td>
+            <td><%= @car.car_model %></td>
+            <td><%= @car.odometer %></td>
+            <td><%= @car.purpose %></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to "編集", edit_car_path(@car), class: "btn btn-primary" %>
+      <%= link_to "一覧", cars_path, class: "btn btn-secondary" %>
+      <%= link_to '削除', car_path(@car), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+    </div>
   </div>
 </div>

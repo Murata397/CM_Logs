@@ -50,9 +50,9 @@ class Public::CarsController < ApplicationController
     @car = Car.find(params[:id])
     if @car.user == current_user
       @car.destroy
-      redirect_to car_path, notice: "Car deleted"
+      redirect_to cars_path, notice: "Car deleted"
     else
-      redirect_to car_path, alert: "You do not have permission to delete other user's car."
+      redirect_to cars_path, alert: "You do not have permission to delete other user's car."
     end
   end
 
