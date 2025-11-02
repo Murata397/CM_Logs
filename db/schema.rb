@@ -74,12 +74,11 @@ ActiveRecord::Schema.define(version: 2025_10_30_004024) do
   create_table "fuel_efficiencies", force: :cascade do |t|
     t.integer "user_id"
     t.integer "car_id"
-    t.string "title", default: "", null: false
     t.date "refuelin_day"
     t.string "odometer", default: ""
     t.string "tripmeter", default: "", null: false
     t.string "fuel", default: "", null: false
-    t.string "fuel_efficiency", default: "", null: false
+    t.string "fuel_efficiency"
     t.string "fuel_type", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

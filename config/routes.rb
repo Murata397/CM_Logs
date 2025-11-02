@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :show, :edit, :update]
     resources :cars, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-    resources :fuel_efficiency, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :fuel_efficiencies, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     get '/search', to: 'searches#search'
   end
 end

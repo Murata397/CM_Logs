@@ -1,4 +1,4 @@
-class Public::FuelEfficiencyController < ApplicationController
+class Public::FuelEfficienciesController < ApplicationController
   before_action :authenticate_user!
 
   def new
@@ -66,7 +66,7 @@ class Public::FuelEfficiencyController < ApplicationController
   private
 
   def fuel_efficiency_params
-    params.require(:fuel_efficiency).permit(:user_id, :car_id, :title, :refuelin_day, :odometer, :tripmeter, :fuel, :fuel_efficiency, :fuel_type)
+    params.require(:fuel_efficiency).permit(:user_id, :car_id, :refuelin_day, :odometer, :tripmeter, :fuel, :fuel_efficiency, :fuel_type)
   end
 
 end

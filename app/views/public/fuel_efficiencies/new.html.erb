@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<div id="error_message" style=color:"red"></div>
+  <% if @fuel_efficiency.errors.any? %>
+    <h2> An error has occurred:</h2>
+    <ul>
+      <% @fuel_efficiency.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1>New Fuel Efficiency</h1>
+      <%= form_for @fuel_efficiency, url: fuel_efficiencies_path do |f| %>
+        <div class="form-group">
+          <%= f.label :car_id, "車両を選択" %>
+          <%= f.collection_select :car_id, current_user.cars, :id, :car_model, { prompt: "車両を選択してください" }, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :給油日 %>
+          <%= f.date_field :refuelin_day, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :総走行距離 %>
+          <div class="input-group">
+            <%= f.text_field :odometer, class: "form-control" %>
+            <div class="input-group-append">
+              <span class="input-group-text">km</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :走行距離 %>
+          <div class="input-group">
+            <%= f.text_field :tripmeter, class: "form-control" %>
+            <div class="input-group-append">
+              <span class="input-group-text">km</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :給油量 %>
+          <div class="input-group">
+            <%= f.text_field :fuel, class: "form-control" %>
+            <div class="input-group-append">
+              <span class="input-group-text">km</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :油種 %>
+          <%= f.select :fuel_type, ['','レギュラー','ハイオク','軽油'], {}, class: "form-control" %>
+        </div>
+        <button type="submit" class="btn btn-primary">作成</button>
+      <% end %>
+    </div>
+  </div>
+</div>

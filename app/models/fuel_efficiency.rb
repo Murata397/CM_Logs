@@ -3,10 +3,8 @@ class FuelEfficiency < ApplicationRecord
   belongs_to :user
   belongs_to :car
 
-  validates :title, presence: true
   validates :tripmeter, presence: true
   validates :fuel, presence: true
-  validates :fuel_efficiency, presence: true
 end
 
 def calculate_fuel_efficiency
