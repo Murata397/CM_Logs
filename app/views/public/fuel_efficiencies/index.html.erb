@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<% if flash[:alert].present? %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Fuel Efficiency List</h1>
+      <h2>
+        <%= link_to '新規投稿', href="/maintenances/new", class: 'btn btn-primary' %>
+        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-primary' %>
+      </h2>
+      <table class="table table-honer table-inverse">
+        <thead>
+          <tr>
+            <th>車種</th>
+            <th>給油日</th>
+            <th>走行距離</th>
+            <th>給油量</th>
+            <th>油種</th>
+            <th>燃費</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @fuel_efficiency.present? %>
+            <% @fuel_efficiency.each do |fuel_efficiency| %>
+              <tr>
+                <td><%= fuel_efficiency.car.car_name %></td>
+                <td><%= fuel_efficiency.refuelin_day %></td>
+                <td><%= fuel_efficiency.tripmeter %>km</td>
+                <td><%= fuel_efficiency.fuel %>L</td>
+                <td><%= fuel_efficiency.fuel_type %></td>
+                <td><%= number_with_precision(fuel_efficiency.fuel_efficiency, precision: 2) %>km/L</td>
+                <td><%= link_to '詳細', fuel_efficiency_path(fuel_efficiency), class: 'btn btn-info' %></td>
+                <td><%= link_to '編集', edit_fuel_efficiency_path(fuel_efficiency), class: 'btn btn-success'%></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<div>
