@@ -3,6 +3,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
+      <p class="w-25"><strong>車両画像:</strong><%= image_tag @maintenance.car.car_image, class:"img-fluid", alt:"Car Image" %></p>
+      <p><strong>車種:</strong><%= @maintenance.car.car_name %></p>
       <p><strong>タイトル:</strong><%= @maintenance.title %></p>
       <p><strong>作業日:</strong> <%= @maintenance.maintenance_day %></p>
       <p><strong>作業内容:</strong> <%= @maintenance.maintenance %></p>

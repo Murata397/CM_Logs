@@ -34,6 +34,7 @@ class Public::MaintenancesController < ApplicationController
     @user = @maintenance.user
     @maintenance_new = Maintenance.new
     @maintenance_comment = MaintenanceComment.new
+    @maintenances = Maintenance.includes(:car).all
   end
 
   def edit
