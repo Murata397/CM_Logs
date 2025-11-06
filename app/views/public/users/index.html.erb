@@ -7,7 +7,9 @@
       <%= render 'public/searches/form', user: @user %>
       <h2>
         <%= link_to '新規投稿', href="/maintenances/new", class: 'btn btn-primary' %>
-        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-primary' %>
+        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-secondary' %>
+        <%= link_to "グループを作成する", new_group_path, class: 'btn btn-success' %>
+        <%= link_to "グループ一覧", groups_path, class: 'btn btn-success' %>
       </h2>
       <table class="table table-honor table-inverse">
           <thead>

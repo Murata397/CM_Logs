@@ -18,10 +18,10 @@
           <tr>
             <td><%= @fuel_efficiency.refuelin_day %></td>
             <td><%= @fuel_efficiency.odometer %></td>
-            <td><%= @fuel_efficiency.tripmeter %></td>
-            <td><%= @fuel_efficiency.fuel %></td>
+            <td><%= @fuel_efficiency.tripmeter %>km</td>
+            <td><%= @fuel_efficiency.fuel %>L</td>
             <td><%= @fuel_efficiency.fuel_type %></td>
-            <td><%= @fuel_efficiency.fuel_efficiency %></td>
+            <td><%= number_with_precision(@fuel_efficiency.fuel_efficiency, precision: 2) %>km/L</td>
           </tr>
         </tbody>
       </table>

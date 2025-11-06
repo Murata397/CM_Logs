@@ -7,13 +7,11 @@ class Public::GroupsController < ApplicationController
   end
 
   def index
-    @group =Group.all
-    @group =Group.includes(:car).all
+    @groups =Group.all
   end
 
   def show
     @group =Group.find(params[:id])
-    @group =Group.includes(:car).all
   end
 
   def create
@@ -33,7 +31,7 @@ class Public::GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to groups_path
     else
-      redirect_to 'edit'
+      render 'edit'
     end
   end
 
@@ -44,7 +42,7 @@ class Public::GroupsController < ApplicationController
   end
 
   def ensure_correct_user
-    @group = Group.find(params{:id})
+    @group = Group.find(params[:id])
     unless @group.owner_id == current_user.id
       redirect_to groups_path
     end

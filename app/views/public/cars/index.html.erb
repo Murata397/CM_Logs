@@ -6,8 +6,8 @@
       <h1>Car List</h1>
       <%= render 'public/searches/form', cars: @cars %> 
       <h2>
-        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-primary' %>
         <%= link_to '新規投稿', href="/maintenances/new", class: 'btn btn-primary' %>
+        <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-secondary' %>
       </h2>
       <table class="table table-honer table-inverse">
         <thead>

@@ -1,0 +1,15 @@
+<table class='table'>
+  <% if car && car.car_image.present? %>
+    <tr>
+      <td><%= image_tag car.car_image, class:"img-fluid", alt:"Car Image", size: "100x100" %></td>
+    </tr>
+    <tr>
+	    <th>車名</th>
+	    <td><%= car.car_name %></td>
+    </tr>
+    <tr>
+	    <th>型式</th>
+	    <td><%= car.car_model %></td>
+    </tr>
+  <% end %>
+</table>

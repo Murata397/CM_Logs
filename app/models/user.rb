@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :maintenance_comments, dependent: :destroy
   has_many :fuel_efficiency, dependent: :destroy
   has_one_attached :profile_image
+  has_many :group_users
+  has_many :groups, through: :group_users
+
 
   validates :name, presence: true, length: { maximum: 10 }
   validates :email, presence: true

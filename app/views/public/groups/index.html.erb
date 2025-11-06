@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col_md-10 offset-md-1">
+      <h1>Groups</h1>
+      <h2>
+        <%= link_to 'グループ作成', href="/groups/new", class: 'btn btn-primary' %>
+      </h2>
+      <%= render 'index', groups: @groups %>
+    </div>
+  </div>
+</div>

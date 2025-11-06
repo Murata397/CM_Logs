@@ -28,6 +28,13 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :cars, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :fuel_efficiencies, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+
+    resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
+      resource :group_users, only: [:create, :destroy]
+      resources :event_notices, only: [:new, :create]
+      get "event_notices" => "event_notices#sent"
+    end
+
     get '/search', to: 'searches#search'
   end
 end
