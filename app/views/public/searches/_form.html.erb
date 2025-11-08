@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <%= f.text_field :content %>
-    <%= f.select :model, options_for_select({ "User" => "user", "Maintenance" => "maintenance", "Car" => "car" }) %>
+    <%= f.select :model, options_for_select({ "User" => "user", "Maintenance" => "maintenance", "Car" => "car" , "Group" => "group"}) %>
     <%= f.submit '検索' %>
   <% end %>
 <% end %>

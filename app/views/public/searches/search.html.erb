@@ -1,10 +1,19 @@
-<% if @model == 'user' %>
-  <h3>Users search for "<%= @content %>"</h3>
-  <%= render 'public/users/index', users: @records %>
-<% elsif @model == 'maintenance' %>
-  <h3>Maintenances search for "<%= @content %>"</h3>
-  <%= render 'public/maintenances/index', maintenances: @records %>
-<% else @model == 'car' %>
-  <h3>Cars search for "<%= @content %>"</h3>
-  <%= render 'public/cars/index', cars: @records %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <% if @model == 'user' %>
+        <h3>Users search for "<%= @content %>"</h3>
+        <%= render 'public/users/index', users: @records %>
+      <% elsif @model == 'maintenance' %>
+        <h3>Maintenances search for "<%= @content %>"</h3>
+        <%= render 'public/maintenances/index', maintenances: @records %>
+      <% elsif @model == 'car' %>
+        <h3>Cars search for "<%= @content %>"</h3>
+        <%= render 'public/cars/index', cars: @records %>
+      <% elsif @model == 'group' %>
+        <h3>Groups search for "<%= @content %>"</h3>
+        <%= render 'public/groups/index', groups: @records %>
+      <% end %>
+    </div>
+  </div>
+</div>

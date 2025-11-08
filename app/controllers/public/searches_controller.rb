@@ -9,8 +9,10 @@ class Public::SearchesController < ApplicationController
       @records = User.search_for(@content, @method)
     elsif @model == 'maintenance'
       @records = Maintenance.search_for(@content, @method)
-    else
+    elsif @model == 'car'
       @records = Car.search_for(@content, @method)
+    else
+      @records = Group.search_for(@content, @method)
     end
   end
 end

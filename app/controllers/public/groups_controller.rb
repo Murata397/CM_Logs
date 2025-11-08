@@ -38,7 +38,7 @@ class Public::GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:group_name, :group_introduction, :group_image)
+    params.require(:group).permit(:group_name, :group_introduction, :group_image, :group_theme, :group_rules)
   end
 
   def ensure_correct_user

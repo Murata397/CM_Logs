@@ -1,31 +1,27 @@
-    <div class="col-md-8 offset-md-2">
-      <table class="table table-honer table-inverse">
-        <thead>
-          <tr>
-            <th>image</th>
-            <th>メーカー</th>
-            <th>車名</th>
-            <th>型式</th>
-            <th>総走行距離</th>
-            <th>使用用途</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% cars.each do |car| %>
-              <tr>
-                <td class="w-25">
-                  <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
-                </td>
-                <td><%= car.manufacturer_name %></td>
-                <td><%= car.car_name %></td>
-                <td><%= car.car_model %></td>
-                <td><%= car.odometer %></td>
-                <td><%= car.purpose %></td>
-                <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
-              </tr>
-            <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<table class="table table-honer table-inverse">
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>メーカー</th>
+      <th>車名</th>
+      <th>型式</th>
+      <th>総走行距離</th>
+      <th>使用用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cars.each do |car| %>
+       <tr>
+        <td class="w-25">
+          <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
+        </td>
+        <td><%= car.manufacturer_name %></td>
+        <td><%= car.car_name %></td>
+        <td><%= car.car_model %></td>
+        <td><%= car.odometer %></td>
+        <td><%= car.purpose %></td>
+        <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

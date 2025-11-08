@@ -36,4 +36,8 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content + '%')
     end
   end
+  
+  def group_joined?(group)
+    groups.include?(group)
+  end
 end

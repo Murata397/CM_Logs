@@ -5,6 +5,8 @@ class CreateGroups < ActiveRecord::Migration[6.1]
       t.integer :car_id
       t.string :group_name
       t.text :group_introduction
+      t.string :group_theme
+      t.text :group_rules
 
       t.timestamps
     end

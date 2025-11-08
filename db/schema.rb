@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(version: 2025_11_04_060554) do
     t.integer "car_id"
     t.string "group_name"
     t.text "group_introduction"
+    t.string "group_theme"
+    t.text "group_rules"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
