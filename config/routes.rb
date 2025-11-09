@@ -35,6 +35,10 @@ Rails.application.routes.draw do
       get "event_notices" => "event_notices#sent"
     end
 
+    resources :groups do
+      resources :requests, only: [:create, :update]
+    end
+
     get '/search', to: 'searches#search'
   end
 end

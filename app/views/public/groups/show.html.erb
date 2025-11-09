@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10">
       <h1>Group</h1>
       <table class='table table-hover table-inverse'>
         <thead>
@@ -33,24 +33,30 @@
           </tr>
         </tbody>
       </table>
-      <td>
         <% if @group.is_owner_by?(current_user) %>
-          <td>
-            <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success" %>
-          </td>
-          <td>
-            <%= link_to 'イベント通知', new_group_event_notice_path(@group), class: "btn btn-sm btn-info" %>
-          </td>
+          <div class="row">
+            <div class="col-md-6">
+              <%= link_to '編集', edit_group_path(@group), class: "btn btn-sm btn-success" %>
+            </div>
+            <div class="col-md-6">
+              <%= link_to 'イベント通知', new_group_event_notice_path(@group), class: "btn btn-sm btn-info" %>
+            </div>
+          </div>
         <% else %>
-          <td>
-            <% if @group.includesUser?(current_user)%>
-              <%= link_to 'グループを脱退', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-            <% else %>
-              <%= link_to 'グループに参加', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
-            <% end %>
-          </td>
+          <div class="row">
+            <div class="col-md-6">
+              <% if @group.includesUser?(current_user)%>
+                <%= link_to 'グループを脱退', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+              <% else %>
+                <%= link_to '参加リクエスト', group_requests_path(@group), method: :post, class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-      </td>
+      </div>
+      <div class="col-md-2">
+        <%= render 'public/requests/index', requests: @requests %>
+      </div>
     </div>
   </div>
 </div>

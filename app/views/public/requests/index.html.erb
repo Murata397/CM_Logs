@@ -1,0 +1,10 @@
+<h1>Request List</h1>
+<ul>
+  <% @group.requests.each do |request| %>
+    <li>
+      <%= request.user.name %>
+      <%= link_to 'Approve', group_request_path(@group, request, status: 'approved'), method: :put %>
+      <%= link_to 'Reject', group_request_path(@group, request, status: 'rejected'), method: :put %>
+    </li>
+  <% end %>
+</ul>

@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :group_users
   has_many :groups, through: :group_users
+  has_many :requests
+  has_many :owned_groups, foreign_key: 'owner_id', class_name: 'Group'
+
 
 
   validates :name, presence: true, length: { maximum: 10 }
@@ -39,5 +42,9 @@ class User < ApplicationRecord
   
   def group_joined?(group)
     groups.include?(group)
+  end
+
+  def is_owner_of?(group)
+    self.owned_groups.include?(group)
   end
 end

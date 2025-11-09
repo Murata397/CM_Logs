@@ -28,8 +28,15 @@ class Public::GroupsController < ApplicationController
   end
 
   def update
+    @group = Group.find(params[:id])
+    
     if @group.update(group_params)
-      redirect_to groups_path
+      if params[:status] == 'approved'
+        request = Request.find(params[:request_id])
+        @group.users << request.user
+        request.destroy
+      end
+      redirect_to @group, notice: 'Group updated.'
     else
       render 'edit'
     end

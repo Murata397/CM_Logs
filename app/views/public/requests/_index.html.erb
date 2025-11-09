@@ -1,0 +1,8 @@
+<h1>Request</h1>
+  <% @group.requests.each do |request| %>
+    <li>
+      <%= request.user.name %>
+      <%= link_to '承認', group_request_path(@group, request, status: 'approved'), method: :put, class: "btn btn-primary" %>
+      <%= link_to '否決', group_request_path(@group, request, status: 'rejected'), method: :put, class: "btn btn-danger" %>
+    </li>
+  <% end %>
