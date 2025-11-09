@@ -11,7 +11,9 @@ class Public::GroupsController < ApplicationController
   end
 
   def show
-    @group =Group.find(params[:id])
+    @group = Group.find(params[:id])
+    @owner_user = User.find(@group.owner_id)
+    @requests = @group.requests
   end
 
   def create
@@ -42,6 +44,18 @@ class Public::GroupsController < ApplicationController
     end
   end
 
+  def remove_member
+    @group = Group.find(params[:id])
+    @user = User.find(params[:user_id])
+  
+    if @group.is_owner_by?(current_user) && @group.users.exists?(@user.id)
+      @group.users.delete(@user)
+      redirect_to @group, notice: 'The user was removed from the group.'
+    else
+      redirect_to @group, alert: 'Operation not permitted.'
+    end
+  end
+
   private
 
   def group_params
@@ -54,4 +68,5 @@ class Public::GroupsController < ApplicationController
       redirect_to groups_path
     end
   end
+
 end

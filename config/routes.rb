@@ -30,12 +30,12 @@ Rails.application.routes.draw do
     resources :fuel_efficiencies, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 
     resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
-      resource :group_users, only: [:create, :destroy]
+      resources :group_users, only: [:create, :destroy]
       resources :event_notices, only: [:new, :create]
       get "event_notices" => "event_notices#sent"
-    end
-
-    resources :groups do
+      member do
+        delete 'remove_member/:user_id', to: 'groups#remove_member', as: 'remove_member'
+      end
       resources :requests, only: [:create, :update]
     end
 

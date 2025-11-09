@@ -8,7 +8,7 @@ class Public::RequestsController < ApplicationController
       redirect_to @group, alert: 'Failed to send request.'
     end
   end
-
+  
   def update
     request = Request.find(params[:id])
     
@@ -17,13 +17,15 @@ class Public::RequestsController < ApplicationController
         if params[:status] == 'approved'
           request.destroy
           request.group.users << request.user
+        elsif params[:status] == 'rejected'
+          request.destroy
         end
         redirect_to request.group, notice: 'Request status updated.'
       else
         redirect_to request.group, alert: 'Failed to update request status.'
       end
     else
-      redirect_to root_path, alert: 'You are not authorized to perform this action.'
+      redirect_to group_path(request.group.id), flash: { alert: 'You are not authorized to perform this action.' }
     end
   end
 end
