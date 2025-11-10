@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1>Admin Editing Groups</h1>
+
+      <%= form_for(@group, url: admin_group_path(@group), method: :patch) do |f| %>
+        <div class="form-group">
+          <%= f.label :group_name %>
+          <%= f.text_field :group_name, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :group_introduction %>
+          <%= f.text_area :group_introduction, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :group_image %>
+          <%= f.file_field :group_image, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :group_theme %>
+          <%= f.text_field :group_theme, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :group_rules %>
+          <%= f.text_area :group_rules, class: 'form-control' %>
+        </div>
+        
+        <div class="actions">
+          <%= f.submit '更新', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
