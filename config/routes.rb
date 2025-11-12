@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
   namespace :admin do
+    root to: "homes#top"
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
     resources :groups

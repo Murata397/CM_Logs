@@ -1,0 +1,36 @@
+<div class="flash-notice">
+  <%= flash[:notice] %>
+</div>
+
+<p id="notice"></p>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <h1 class="px-6 mx-auto">
+          <strong>Admin CM_Logs Topページ</strong>
+        </h1>
+        <br>
+        <br>
+        <p>ここでは管理者としてユーザー様の不適切な投稿や不適切なコメント、<br>不適切な行為をしているグループ等の管理が目的です。</p>
+        <br>
+        <p>不適切なものに関しては、削除しより良いサイト運営に努めましょう。</p>
+
+        <div class="btn-wrapper col-10 mx-auto">
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 " href="/admin/maintenances">メンテナンス一覧</a>
+          </div>
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 " href="/admin/maintenance_comments">コメント一覧</a>
+          </div>
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 " href="/admin/groups">グループ一覧</a>
+          </div>
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 " href="/admin/dashboards">ユーザー一覧</a>
+          </div>
+        <div>
+      </div>
+    </div>
+  </div>
+</main>
