@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
     resources :groups
+    resources :maintenances
+    resources :maintenance_comments, only: [:index, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

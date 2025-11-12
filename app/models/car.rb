@@ -1,6 +1,6 @@
 class Car < ApplicationRecord
   belongs_to :user
-  has_many :maintenances
+  has_many :maintenances, dependent: :destroy
   has_many :fuel_efficiency, dependent: :destroy
 
   has_one_attached :car_image

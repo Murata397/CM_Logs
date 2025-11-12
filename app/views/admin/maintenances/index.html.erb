@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<% if flash[:alert].present? %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Admin's Maintenance List</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>車種</th>
+            <th>タイトル</th>
+            <th>作業日</th>
+            <th>作業内容</th>
+            <th>作業難易度</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @maintenances.present? %>
+            <% @maintenances.each do |maintenance| %>
+              <tr>
+                <td><%= maintenance.car&.car_name %></td>
+                <td><%= maintenance.title %></td>
+                <td><%= maintenance.maintenance_day %></td>
+                <td><%= maintenance.maintenance %></td>
+                <td><%= maintenance.work_difficulty %></td>
+                <td>
+                  <%= link_to '詳細', admin_maintenance_path(maintenance), class: 'btn btn-info' %>
+                  <%= link_to '削除', admin_maintenance_path(maintenance), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+                </td>
+                <td>コメント数: <%= maintenance.maintenance_comments.count %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

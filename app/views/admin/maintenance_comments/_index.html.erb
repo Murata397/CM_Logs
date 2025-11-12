@@ -1,0 +1,18 @@
+<table class="table table-honer table-inverse">
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>コメント</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @maintenance_comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.comment %></td>
+        <td><%= link_to '削除', admin_maintenance_comment_path(maintenance_id: comment.maintenance_id, id: comment.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

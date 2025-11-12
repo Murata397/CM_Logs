@@ -29,6 +29,18 @@
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
                 <li>
+                  <a class="nav-link text-dark" href="/admin/maintenances">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                    Maintenances
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link text-dark" href="/admin/maintenance_comments">
+                    <i class="fa-solid fa-comments"></i>
+                    Comments
+                  </a>
+                </li>
+                <li>
                   <a class="nav-link text-dark" href="/admin/groups">
                     <i class="fa-solid fa-user-group"></i>
                     Groups
