@@ -14,12 +14,12 @@ class Admin::MaintenanceCommentsController < ApplicationController
   
       if comment
         comment.destroy
-        flash[:success] = "Comment deleted."
+        flash[:success] = "コメントは削除されました。"
       else
-        flash[:error] = "No comments found."
+        flash[:error] = "コメントが見つかりませんでした。"
       end
     else
-      flash[:error] = "Maintenance not found."
+      flash[:error] = "メンテナンス情報が見つかりません"
     end
   
     redirect_to admin_maintenance_comments_path

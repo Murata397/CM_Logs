@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
 
   def create
     @user = User.new(user_params)
@@ -32,14 +33,14 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.id == current_user.id
       if @user.update(user_params)
-        flash[:notice] = "You have updated user successfully."
+        flash[:notice] = "ユーザー情報を正常に更新しました。"
         redirect_to user_path(@user)
       else
-        flash[:alert] = "error prohibited this obj from being saved:"
+        flash[:notice] = "ユーザー情報を正常に更新できませんでした。"
         render :edit
       end
     else
-      redirect_to user_path(current_user), alert: "You don't have permission to edit this user."
+      redirect_to user_path(current_user), alert: "このユーザー情報を編集する権限がありません。"
     end
   end
 
@@ -47,11 +48,19 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @user.destroy
     sign_out @user
-    redirect_to root_path, notice: "Your cancellation is complete. You have been logged out."
+    redirect_to root_path, notice: "ユーザー情報の削除が完了しました。  ログアウトしました。"
   end
 
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :profile_image, :introduction,)
   end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面にアクセスできません。  ログアウト後,新規登録してください。"
+    end
+  end
+
 end

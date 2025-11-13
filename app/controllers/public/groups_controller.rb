@@ -1,6 +1,7 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :check_guest_user, except: [:index, :show]
 
   def new
     @group =Group.new
@@ -53,6 +54,12 @@ class Public::GroupsController < ApplicationController
       redirect_to @group, notice: 'The user was removed from the group.'
     else
       redirect_to @group, alert: 'Operation not permitted.'
+    end
+  end
+
+  def check_guest_user
+    if current_user && current_user.guest_user?
+      redirect_to @current_user, notice: "ゲストユーザーはこの操作を実行できません。  ログアウト後、新規登録してください。"
     end
   end
 

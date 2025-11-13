@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   #before_action :configure_authentication
+
  
   private
  
@@ -19,5 +20,10 @@ class ApplicationController < ActionController::Base
  
   def action_is_public?
     controller_name == 'homes' && action_name == 'top'
+  end
+
+  private
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
   end
 end

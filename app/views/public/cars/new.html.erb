@@ -2,7 +2,7 @@
 
 <div id="error_message" style="color: red;"></div>
   <% if @car.errors.any? %>
-    <h2>An error has occurred:</h2>
+    <h2>エラーが発生しました:</h2>
       <ul>
         <% @car.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>

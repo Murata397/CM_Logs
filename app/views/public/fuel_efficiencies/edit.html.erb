@@ -2,7 +2,7 @@
 
 <div id="error_message" style=color:"red"></div>
   <% if @fuel_efficiency.errors.any? %>
-    <h2> An error has occurred:</h2>
+    <h2>エラーが発生しました:</h2>
     <ul>
       <% @fuel_efficiency.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

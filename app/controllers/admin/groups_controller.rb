@@ -12,7 +12,7 @@ class Admin::GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to admin_groups_path, notice: 'Group updated.'
+      redirect_to admin_groups_path, notice: 'グループ情報が更新されました。'
     else
       render 'edit'
     end
@@ -24,7 +24,7 @@ class Admin::GroupsController < ApplicationController
       @group.group_users.destroy_all
       @group.destroy
     end
-    redirect_to admin_groups_path, notice: 'Group and related records deleted.'
+    redirect_to admin_groups_path, notice: 'グループ情報および関連情報が削除されました。'
   end
 
 

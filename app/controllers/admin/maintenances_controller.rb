@@ -15,7 +15,7 @@ class Admin::MaintenancesController < ApplicationController
   def destroy
     @maintenance = Maintenance.find(params[:id])
     @maintenance.destroy
-    redirect_to admin_maintenances_path, notice: "Maintenance deleted successfully."
+    redirect_to admin_maintenances_path, notice: "メンテナンス情報の削除に成功しました。"
   end
 
   private
