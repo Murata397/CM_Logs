@@ -34,6 +34,9 @@ Rails.application.routes.draw do
       resources :maintenance_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+
+    resources :favorites, only: [:index]
+
     resources :users, only: [:index, :show, :edit, :update]
     resources :cars, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :fuel_efficiencies, only: [:new, :create, :index, :show, :edit, :update, :destroy]

@@ -2,6 +2,10 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_guest_user, except: []
 
+  def index
+    @favorites = current_user.favorites
+  end
+
   def create
     maintenance = Maintenance.find(params[:maintenance_id])
     favorite = current_user.favorites.new(maintenance_id: maintenance.id)
