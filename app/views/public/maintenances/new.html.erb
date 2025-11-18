@@ -51,11 +51,11 @@
         </div>
         <div class="form-group">
           <%= f.label :images, '作業画像' %>
-          <%= f.file_field :images, class: "form-control-file", accept: "image/*" %>
+          <%= f.file_field :images, multiple: true, class: "form-control-file", accept: "image/*" %>
         </div>
         <div class="form-group">
           <%= f.label :作業説明 %>
-          <%= f.text_field :work_description, class: "form-control" %>
+          <input type="text" name="maintenance[work_descriptions][]" class="form-control">
         </div>
         <div class="input_fields"></div>
         <div class="add_field_button btn btn-primary">作業画像・説明を追加</div>
@@ -72,34 +72,47 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var addButton = document.querySelector('.add_field_button');
-    var inputFieldsWrap = document.querySelector('.input_fields');
-    var maxFields = 10; // 最大追加フォーム数
+  document.addEventListener('turbolinks:load', function() {
 
-    var x = 1;
+    const addButton = document.querySelector('.add_field_button');
+    const inputFieldsWrap = document.querySelector('.input_fields');
+    const maxFields = 10;
+
+    if (!addButton || addButton.dataset.listenerAdded === "true") return;
+    addButton.dataset.listenerAdded = "true";
+
+    let x = 1;
 
     addButton.addEventListener('click', function(e) {
       e.preventDefault();
       if (x < maxFields) {
         x++;
-        var newField = document.createElement('div');
-        
+
+        const newField = document.createElement('div');
+        newField.classList.add("added-field");
+
         newField.innerHTML = `
-        <%= form_for(@maintenance) do |f| %>
           <div class="form-group">
-            <%= f.label :images, '作業画像' %>
-            <%= f.file_field :images, class: "form-control-file", accept: "image/*" %>
+            <label>作業画像</label><br>
+            <input type="file" name="maintenance[images][]" multiple>
           </div>
           <div class="form-group">
-            <%= f.label :作業説明 %>
-            <%= f.text_field :work_description, class: "form-control" %>
+            <label>作業説明</label>
+            <input type="text" name="maintenance[work_descriptions][]" class="form-control">
           </div>
-        <% end %>
+          <button type="button" class="btn btn-danger btn-sm remove_field_button">削除</button>
+          <hr>
         `;
-        
+
         inputFieldsWrap.appendChild(newField);
+
+        const removeButton = newField.querySelector('.remove_field_button');
+        removeButton.addEventListener('click', function () {
+          newField.remove();
+          x--;
+        });
       }
     });
+
   });
 </script>

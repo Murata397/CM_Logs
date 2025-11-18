@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_11_08_075946) do
+ActiveRecord::Schema.define(version: 2025_11_18_024907) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 2025_11_08_075946) do
     t.integer "car_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.json "work_descriptions"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -163,9 +164,18 @@ ActiveRecord::Schema.define(version: 2025_11_08_075946) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "work_descriptions", force: :cascade do |t|
+    t.integer "maintenance_id", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["maintenance_id"], name: "index_work_descriptions_on_maintenance_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "posts", "users"
   add_foreign_key "requests", "groups"
   add_foreign_key "requests", "users"
+  add_foreign_key "work_descriptions", "maintenances"
 end

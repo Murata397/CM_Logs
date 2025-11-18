@@ -6,12 +6,21 @@ class Public::MaintenancesController < ApplicationController
   end
 
   def create
-    @maintenance = Maintenance.new(maintenance_params)
+    @maintenance = Maintenance.new(maintenance_params.except(:work_descriptions))
     @maintenance.user_id = current_user.id
-
+  
     if @maintenance.save
+  
+      if params[:maintenance][:work_descriptions].present?
+        params[:maintenance][:work_descriptions].each do |desc|
+          next if desc.blank?
+          @maintenance.work_descriptions.create(description: desc)
+        end
+      end
+  
       flash[:notice] = "メンテナンス情報の登録に成功しました。"
       redirect_to maintenance_path(@maintenance)
+  
     else
       flash[:notice] = "メンテナンス情報の登録に失敗しました。"
       render 'new'
@@ -47,14 +56,30 @@ class Public::MaintenancesController < ApplicationController
 
   def update
     @maintenance = Maintenance.find(params[:id])
-    if @maintenance.update(maintenance_params)
+  
+    if @maintenance.update(maintenance_params.except(:images, :work_descriptions))
+
+      if params[:maintenance][:images].present?
+        params[:maintenance][:images].each do |img|
+          next if img.blank?
+          @maintenance.images.attach(img)
+        end
+      end
+  
+      if params[:maintenance][:work_descriptions].present?
+        params[:maintenance][:work_descriptions].each do |desc|
+          next if desc.blank?
+          @maintenance.work_descriptions.create(description: desc)
+        end
+      end
+  
       flash[:notice] = "メンテナンス情報の更新に成功しました。"
       redirect_to @maintenance
     else
-      flash[:notice] = "メンテナンス情報の更新に失敗しました。"
-      render 'edit'
+      render :edit
     end
   end
+  
 
   def destroy
     @maintenance = Maintenance.find(params[:id])
@@ -75,6 +100,18 @@ class Public::MaintenancesController < ApplicationController
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(:title, :maintenance_day, :maintenance, :work_difficulty, :work_time, :work_pay, :tool_images, :images , :related_information, :work_description, :car_id)
+    params.require(:maintenance).permit(
+      :title,
+      :maintenance_day,
+      :maintenance,
+      :work_difficulty,
+      :work_time,
+      :work_pay,
+      :tool_images,
+      :related_information,
+      :car_id,
+      images: [],
+      work_descriptions: []
+    )
   end
 end

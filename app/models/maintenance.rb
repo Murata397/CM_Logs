@@ -2,9 +2,9 @@ class Maintenance < ApplicationRecord
 
   belongs_to :user
   belongs_to :car
-  has_many_attached :images
-  has_one_attached :tool_images
-  has_many :work_descriptions
+  has_many_attached :images, dependent: :destroy
+  has_one_attached :tool_images, dependent: :destroy
+  has_many :work_descriptions, dependent: :destroy
   has_many :maintenance_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

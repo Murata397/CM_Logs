@@ -19,16 +19,22 @@
       <p><strong>作業時間:</strong><%= @maintenance.work_time %></p>
       <p><strong>作業料金:</strong><%= @maintenance.work_pay %></p>
 
-      <p><strong>作業画像:</strong>
-        <% if @maintenance.images.present? %>
-          <% @maintenance.images.each do |image| %>
-            <%= image_tag url_for(image), class: "img-thumbnail", style: "width: 25%;" %>
-          <% end %>
-        <% else %>
-          <img src="<%= asset_path('no_image.jpg') %>" class="img-fluid" alt="No Image">
+      <p><strong>作業画像と説明:</strong></p>
+
+      <% if @maintenance.images.present? %>
+        <% @maintenance.images.each_with_index do |image, i| %>
+          <div class="mb-3">
+            <%= image_tag image, class: "img-thumbnail", style: "width: 25%;" %>
+
+            <% desc = @maintenance.work_descriptions[i] %>
+            <% if desc.present? %>
+              <p><strong>説明:</strong> <%= desc.description %></p>
+            <% else %>
+              <p><strong>説明:</strong> なし</p>
+            <% end %>
+          </div>
         <% end %>
-      </p>
-      <p><strong>作業説明:</strong><%= @maintenance.work_description %></p>
+      <% end %>
       <p><strong>関連URL:</strong> <%= @maintenance.related_information %></p>
       
       <%= link_to "更新", edit_maintenance_path(@maintenance), class: "btn btn-primary" %>
@@ -46,6 +52,6 @@
       <%= render "public/maintenance_comments/index", maintenance: @maintenance %>
       <%= render "public/maintenance_comments/form", maintenance: @maintenance, maintenance_comment: @maintenance_comment %>
 
-      </div>
+    </div>
   </div>
 </div>
