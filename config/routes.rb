@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     resources :groups
     resources :maintenances
     resources :maintenance_comments, only: [:index, :destroy]
+    resources :users, only: [:destroy] do
+      member do
+        patch :restore
+      end
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

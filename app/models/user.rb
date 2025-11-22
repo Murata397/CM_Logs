@@ -14,13 +14,34 @@ class User < ApplicationRecord
   has_many :requests
   has_many :owned_groups, foreign_key: 'owner_id', class_name: 'Group'
 
-
-
   validates :name, presence: true, length: { maximum: 10 }
   validates :email, presence: true
   validates :introduction, length: { maximum: 50 }
-  
+
   GUEST_USER_EMAIL = "guest@example.com"
+
+  scope :active,  -> { where(deleted_at: nil) }
+  scope :deleted, -> { where.not(deleted_at: nil) }
+
+  def soft_delete
+    update(deleted_at: Time.current)
+  end
+
+  def restore
+    update(deleted_at: nil)
+  end
+
+  def deleted?
+    deleted_at.present?
+  end
+
+  def active_for_authentication?
+    super && !deleted?
+  end
+
+  def inactive_message
+    deleted? ? :deleted_account : super
+  end
 
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
@@ -52,12 +73,12 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content + '%')
     end
   end
-  
+
   def group_joined?(group)
     groups.include?(group)
   end
 
   def is_owner_of?(group)
-    self.owned_groups.include?(group)
+    owned_groups.include?(group)
   end
 end
