@@ -6,13 +6,36 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:destroy]
-    resources :groups
-    resources :maintenances
-    resources :maintenance_comments, only: [:index, :destroy]
-    resources :users, only: [:destroy] do
+    resources :groups do
+      collection do
+        get :deleted_index
+      end
       member do
         patch :restore
+      end
+    end
+    resources :maintenances do
+      collection do
+        get :deleted_index
+      end
+      member do
+        patch :restore
+      end
+    end
+    resources :maintenance_comments, only: [:index, :destroy]do
+      collection do
+        get :deleted_index
+      end
+      member do
+        patch :restore
+      end
+    end
+    resources :users do
+      member do
+        patch :restore
+      end
+      collection do
+        get :deleted_index
       end
     end
   end

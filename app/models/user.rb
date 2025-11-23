@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :cars, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :posts, class_name: 'Post', dependent: :destroy
-  has_many :maintenance_comments, dependent: :destroy
+  has_many :maintenance_comments
   has_many :fuel_efficiency, dependent: :destroy
   has_one_attached :profile_image
   has_many :group_users
@@ -19,9 +19,12 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
 
   GUEST_USER_EMAIL = "guest@example.com"
+  scope :without_guest, -> { where.not(email: "guest@example.com") }
 
   scope :active,  -> { where(deleted_at: nil) }
   scope :deleted, -> { where.not(deleted_at: nil) }
+
+  default_scope { where(deleted_at: nil) }
 
   def soft_delete
     update(deleted_at: Time.current)

@@ -12,7 +12,7 @@ class Public::MaintenanceCommentsController < ApplicationController
   end
 
   def destroy
-    MaintenanceComment.find_by(id: params[:id], maintenance_id: params[:maintenance_id]).destroy
+    MaintenanceComment.find_by(id: params[:id], maintenance_id: params[:maintenance_id]).soft_delete
     redirect_to request.referer
   end
 

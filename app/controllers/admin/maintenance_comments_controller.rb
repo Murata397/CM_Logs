@@ -3,26 +3,31 @@ class Admin::MaintenanceCommentsController < ApplicationController
   layout 'admin'
 
   def index
-    @maintenance_comments = MaintenanceComment.all
+    @maintenance_comments = MaintenanceComment.with_deleted
   end
 
   def destroy
-    maintenance = Maintenance.find_by(id: params[:maintenance_id])
-  
-    if maintenance
-      comment = maintenance.maintenance_comments.find_by(id: params[:id])
-  
-      if comment
-        comment.destroy
-        flash[:success] = "コメントは削除されました。"
-      else
-        flash[:error] = "コメントが見つかりませんでした。"
-      end
-    else
-      flash[:error] = "メンテナンス情報が見つかりません"
-    end
-  
-    redirect_to admin_maintenance_comments_path
+  comment = MaintenanceComment.unscoped.find_by(id: params[:id])
+
+  if comment
+    comment.soft_delete
+    flash[:success] = "コメントは削除されました。"
+  else
+    flash[:error] = "コメントが見つかりませんでした。" 
+  end
+
+  redirect_to admin_maintenance_comments_path
+  end
+
+
+  def deleted_index
+    @comments = MaintenanceComment.with_deleted.where.not(deleted_at: nil)
+  end
+
+  def restore
+    @comment = MaintenanceComment.with_deleted.find(params[:id])
+    @comment.restore
+    redirect_to admin_maintenance_comments_path, notice: "コメントを復元しました。"
   end
 
   private

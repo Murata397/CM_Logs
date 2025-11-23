@@ -8,6 +8,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Admin's Comment List</h1>
+      <%= link_to "削除済みコメント一覧", deleted_index_admin_maintenance_comments_path, class: "btn btn-secondary" %>
       <table class="table table-honer table-inverse">
         <thead>
           <tr>
@@ -18,10 +19,16 @@
         </thead>
         <tbody>
           <% @maintenance_comments.each do |comment| %>
-            <tr>
-              <td><%= comment.user.name %></td>
+            <tr class="<%= 'text-muted' if comment.deleted? %>">
+              <td><%= comment.user&.name || "退会ユーザー" %></td>
               <td><%= comment.comment %></td>
-              <td><%= link_to '削除', admin_maintenance_comment_path(maintenance_id: comment.maintenance_id, id: comment.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %></td>
+              <td>
+                <% if comment.deleted? %>
+                  <%= link_to "復元", restore_admin_maintenance_comment_path(comment), method: :patch, class: "btn btn-success" %>
+                <% else %>
+                  <%= link_to "削除", admin_maintenance_comment_path(comment),method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

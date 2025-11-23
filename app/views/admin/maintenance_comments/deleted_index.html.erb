@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>削除済みコメント一覧</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ユーザー</th>
+            <th>コメント内容</th>
+            <th>削除日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |c| %>
+            <tr class="table-secondary">
+              <td><%= c.id %></td>
+              <td><%= c.user.name %></td>
+              <td><%= c.comment %></td>
+              <td><%= c.deleted_at %></td>
+              <td>
+                <%= link_to "復元", restore_admin_maintenance_comment_path(c),method: :patch, class: "btn btn-success" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

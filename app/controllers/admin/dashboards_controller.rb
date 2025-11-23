@@ -2,6 +2,6 @@ class Admin::DashboardsController < ApplicationController
   layout 'admin'
   before_action :authenticate_admin!
     def index
-        @users = User.with_deleted.all
+      @users = User.unscoped.without_guest
     end
 end

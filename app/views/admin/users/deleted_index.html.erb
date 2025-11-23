@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1>削除済みユーザー一覧</h1>
+      <table class="table table-secondary">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>メール</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= link_to "復元", restore_admin_user_path(user), method: :patch, class: "btn btn-success btn-sm" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

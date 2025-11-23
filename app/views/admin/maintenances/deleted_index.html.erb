@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>削除済みメンテナンス一覧</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>ユーザー</th>
+            <th>削除日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @maintenances.each do |m| %>
+            <tr class="table-secondary">
+              <td><%= m.title %></td>
+              <td><%= m.user.name %></td>
+              <td><%= m.deleted_at %></td>
+              <td>
+                <%= link_to "復元", restore_admin_maintenance_path(m), method: :patch,class: "btn btn-success" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

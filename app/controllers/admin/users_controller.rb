@@ -1,6 +1,11 @@
 class Admin::UsersController < ApplicationController
+  layout 'admin'
   before_action :authenticate_admin!
   before_action :set_user, only: [:destroy, :restore]
+
+  def index
+    @users = User.where(deleted_at: nil)
+  end
 
   def destroy
     if @user.guest_user?
@@ -16,9 +21,13 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_dashboards_path, notice: 'ユーザーを復元しました。'
   end
 
+  def deleted_index
+    @users = User.unscoped.where.not(deleted_at: nil)
+  end
+
   private
 
   def set_user
-    @user = User.with_deleted.find(params[:id])
+    @user = User.unscoped.find(params[:id])
   end
 end

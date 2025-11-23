@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>削除済みグループ一覧</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>グループ名</th>
+            <th>削除日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |g| %>
+            <tr class="table-secondary">
+              <td><%= g.group_name %></td>
+              <td><%= g.deleted_at %></td>
+              <td>
+                <%= link_to "復元", restore_admin_group_path(g),method: :patch, class: "btn btn-success" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

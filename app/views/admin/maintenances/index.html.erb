@@ -8,6 +8,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Admin's Maintenance List</h1>
+      <%= link_to "削除済みメンテナンス一覧", deleted_index_admin_maintenances_path, class: "btn btn-secondary" %>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -22,15 +23,19 @@
         <tbody>
           <% if @maintenances.present? %>
             <% @maintenances.each do |maintenance| %>
-              <tr>
+              <tr class="<%= 'table-secondary' if maintenance.deleted_at.present? %>">
                 <td><%= maintenance.car&.car_name %></td>
                 <td><%= maintenance.title %></td>
                 <td><%= maintenance.maintenance_day %></td>
                 <td><%= maintenance.maintenance %></td>
                 <td><%= maintenance.work_difficulty %></td>
                 <td>
-                  <%= link_to '詳細', admin_maintenance_path(maintenance), class: 'btn btn-info' %>
-                  <%= link_to '削除', admin_maintenance_path(maintenance), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+                  <% if maintenance.deleted_at.present? %>
+                    <%= link_to '復元', restore_admin_maintenance_path(maintenance),method: :patch,class: 'btn btn-success' %>
+                  <% else %>
+                    <%= link_to '詳細', admin_maintenance_path(maintenance), class: 'btn btn-info' %>
+                    <%= link_to '削除', admin_maintenance_path(maintenance),method: :delete,data: { confirm: '本当に削除しますか？' },class: 'btn btn-danger' %>
+                  <% end %>
                 </td>
                 <td>コメント数: <%= maintenance.maintenance_comments.count %></td>
               </tr>

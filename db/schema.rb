@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_11_22_030821) do
+ActiveRecord::Schema.define(version: 2025_11_23_080912) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2025_11_22_030821) do
     t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 2025_11_22_030821) do
     t.text "group_rules"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
   create_table "maintenance_comments", force: :cascade do |t|
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 2025_11_22_030821) do
     t.integer "maintenance_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
   end
 
   create_table "maintenances", force: :cascade do |t|
@@ -128,6 +131,7 @@ ActiveRecord::Schema.define(version: 2025_11_22_030821) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.json "work_descriptions"
+    t.datetime "deleted_at"
   end
 
   create_table "posts", force: :cascade do |t|

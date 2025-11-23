@@ -84,7 +84,7 @@ class Public::MaintenancesController < ApplicationController
   def destroy
     @maintenance = Maintenance.find(params[:id])
     if @maintenance.user == current_user
-      @maintenance.destroy
+      @maintenance.soft_delete
       redirect_to maintenances_path, notice: "メンテナンス情報を削除しました。"
     else
       redirect_to maintenances_path, alert: "他ユーザーのメンテナンス情報は削除できません。"
@@ -100,18 +100,6 @@ class Public::MaintenancesController < ApplicationController
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(
-      :title,
-      :maintenance_day,
-      :maintenance,
-      :work_difficulty,
-      :work_time,
-      :work_pay,
-      :tool_images,
-      :related_information,
-      :car_id,
-      images: [],
-      work_descriptions: []
-    )
+    params.require(:maintenance).permit(:title,:maintenance_day,:maintenance,:work_difficulty,:work_time,:work_pay,:tool_images,:related_information,:car_id,images: [],work_descriptions: [])
   end
 end

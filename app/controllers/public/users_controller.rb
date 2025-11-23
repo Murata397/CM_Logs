@@ -12,12 +12,18 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.without_guest
     @user = current_user
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.unscoped.find(params[:id])
+  
+    if @user.deleted?
+      redirect_to root_path, notice: "このユーザーは退会しています。"
+      return
+    end
+  
     @current_user = current_user
     @cars = @user.cars
   end
@@ -44,9 +50,9 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def un
     @user = current_user
-    @user.destroy
+    @user.soft_delete
     sign_out @user
     redirect_to root_path, notice: "ユーザー情報の削除が完了しました。  ログアウトしました。"
   end

@@ -2,14 +2,17 @@
   <tbody>
       <% maintenance.maintenance_comments.each do |maintenance_comment| %>
       <tr>
-        
         <td>
-          <%= link_to user_path(maintenance_comment.user) do %>
-            <%= image_tag maintenance_comment.user.get_profile_image, size: "100x100" %><br>
-            <%= maintenance_comment.user.name %>
+          <% if maintenance_comment.user.present? %>
+            <%= link_to user_path(maintenance_comment.user) do %>
+              <%= image_tag maintenance_comment.user.get_profile_image, size: "100x100" %><br>
+              <%= maintenance_comment.user.name %>
+              <% end %>
+          <% else %>
+            <span class="text-muted">退会したユーザー</span>
           <% end %>
         </td>
-        <td><%= maintenance_comment.comment %></td>
+        <td>：<%= maintenance_comment.comment %></td>
         <td>
           <% if maintenance_comment.user == current_user %>
             <%= link_to "Destroy", maintenance_maintenance_comment_path(maintenance, maintenance_comment), method: :delete, class: "btn btn-danger pull-right" %>

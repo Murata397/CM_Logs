@@ -4,7 +4,7 @@ class Admin::GroupsController < ApplicationController
   layout 'admin'
 
   def index
-    @groups = Group.all
+    @groups = Group.unscoped.all
   end
 
   def edit
@@ -20,22 +20,30 @@ class Admin::GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    ActiveRecord::Base.transaction do
-      @group.group_users.destroy_all
-      @group.destroy
-    end
-    redirect_to admin_groups_path, notice: 'グループ情報および関連情報が削除されました。'
+    @group.soft_delete
+    redirect_to admin_groups_path, notice: 'グループを削除しました。'
   end
 
+  def deleted_index
+    @groups = Group.unscoped.where.not(deleted_at: nil)
+  end
+
+  def restore
+    @group = Group.unscoped.find(params[:id])
+    if @group.restore
+      redirect_to admin_groups_path, notice: "グループを復元しました"
+    else
+      redirect_to admin_groups_path, alert: "復元に失敗: #{@group.errors.full_messages.join(', ')}"
+    end
+  end
 
   private
 
   def set_group
-    @group = Group.find(params[:id])
+    @group = Group.unscoped.find(params[:id])
   end
 
   def group_params
     params.require(:group).permit(:group_name, :group_introduction, :group_image, :group_theme, :group_rules)
   end
-
 end

@@ -5,13 +5,28 @@ class Maintenance < ApplicationRecord
   has_many_attached :images, dependent: :destroy
   has_one_attached :tool_images, dependent: :destroy
   has_many :work_descriptions, dependent: :destroy
-  has_many :maintenance_comments, dependent: :destroy
+  has_many :maintenance_comments
   has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
   validates :maintenance_day, presence: true
   validates :maintenance, presence: true
   validates :work_difficulty, presence: true
+
+  default_scope { where(deleted_at: nil) }
+  scope :with_deleted, -> { unscope(where: :deleted_at) }
+
+  def soft_delete
+    update(deleted_at: Time.current)
+  end
+
+  def restore
+    update(deleted_at: nil)
+  end
+
+  def deleted?
+    deleted_at.present?
+  end
 
   def index
     @maintenances = Maintenance.select(:id, :title, :maintenance_day, :maintenance, :work_difficulty)

@@ -11,6 +11,26 @@ class Group < ApplicationRecord
   validates :group_introduction, length: { maximum: 100 }
   validates :group_rules, length: { maximum: 200 }
 
+  default_scope { where(deleted_at: nil) }
+  scope :with_deleted, -> { unscope(where: :deleted_at) }
+
+  def soft_delete
+    update(deleted_at: Time.current)
+  end
+
+  def restore
+    if owner_id.present?
+      owner = User.unscoped.find_by(id: owner_id)
+      owner.restore if owner&.deleted?
+    end
+  
+    update(deleted_at: nil)
+  end
+
+  def deleted?
+    deleted_at.present?
+  end
+
   def get_group_image
     if group_image.attached?
       group_image
