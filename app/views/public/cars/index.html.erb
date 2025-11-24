@@ -9,37 +9,7 @@
         <%= link_to '新規投稿', href="/maintenances/new", class: 'btn btn-primary' %>
         <%= link_to '所有車登録', href="/cars/new", class: 'btn btn-secondary' %>
       </h2>
-      <table class="table table-honer table-inverse">
-        <thead>
-          <tr>
-            <th>image</th>
-            <th>メーカー</th>
-            <th>車名</th>
-            <th>型式</th>
-            <th>総走行距離</th>
-            <th>使用用途</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @cars.present? %>
-            <% @cars.each do |car| %>
-              <tr>
-                <td class="w-25">
-                  <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
-                </td>
-                <td><%= car.manufacturer_name %></td>
-                <td><%= car.car_name %></td>
-                <td><%= car.car_model %></td>
-                <td><%= car.odometer %></td>
-                <td><%= car.purpose %></td>
-                <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
-                <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
-                <td><%= link_to 'ユーザー', user_path(car.user_id), class: 'btn btn-primary' %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'index', cars: @cars %>
     </div>
   </div>
 </div>

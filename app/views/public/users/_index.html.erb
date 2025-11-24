@@ -15,7 +15,11 @@
         </td>
         <td><%= user.name %></td>
         <td><%= user.introduction %></td>
-        <td><%= link_to '詳細', user_path(user), class: 'btn btn-success' %></td>
+        <td>
+          <% unless current_user.id == user.id %>
+            <%= link_to '詳細', user_path(user), class: 'btn btn-success' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

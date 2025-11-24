@@ -16,49 +16,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <h1>Editing Fuel Efficiency</h1>
-      <%= form_for @fuel_efficiency, url: fuel_efficiency_path(@fuel_efficiency), method: :patch do |f| %>
-        <div class="form-group">
-          <%= f.label :car_id, "車両を選択" %>
-          <%= f.collection_select :car_id, current_user.cars, :id, :car_model, { prompt: "車両を選択してください" }, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :給油日 %>
-          <%= f.date_field :refuelin_day, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :総走行距離 %>
-          <div class="input-group">
-            <%= f.text_field :odometer, class: "form-control" %>
-            <div class="input-group-append">
-              <span class="input-group-text">km</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <%= f.label :走行距離 %>
-          <div class="input-group">
-            <%= f.text_field :tripmeter, class: "form-control" %>
-            <div class="input-group-append">
-              <span class="input-group-text">km</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <%= f.label :給油量 %>
-          <div class="input-group">
-            <%= f.text_field :fuel, class: "form-control" %>
-            <div class="input-group-append">
-              <span class="input-group-text">km</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <%= f.label :油種 %>
-          <%= f.select :fuel_type, ['','レギュラー','ハイオク','軽油'], {}, class: "form-control" %>
-        </div>
-        <button type="submit" class="btn btn-primary">作成</button>
-        <%= link_to "戻る",fuel_efficiencies_path, class: "btn btn-secondary" %>
-      <% end %>
+      <%= render 'public/fuel_efficiencies/form', fuel_efficiency: @fuel_efficiency %>
     </div>
   </div>
 </div>

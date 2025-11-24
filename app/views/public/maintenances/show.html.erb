@@ -4,7 +4,6 @@
   <div class="row">
     <div class="col-md-6">
       <p class="w-25"><strong>車両画像:</strong><%= image_tag @maintenance.car.car_image, class:"img-fluid", alt:"Car Image" %></p>
-
       <% if @maintenance.user == current_user %>
         <p><strong>公開設定:</strong>
           <% if @maintenance.published? %>

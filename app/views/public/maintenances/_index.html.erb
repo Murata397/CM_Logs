@@ -8,17 +8,27 @@
       <th>作業難易度</th>
     </tr>
   </thead>
-  <tbody>
-    <% maintenances.each do |maintenance| %>
-      <tr>
-        <td><%= maintenance.car.car_name %></td>
-        <td><%= maintenance.title %></td>
-        <td><%= maintenance.maintenance_day %></td>
-        <td><%= maintenance.maintenance %></td>
-        <td><%= maintenance.work_difficulty %></td>
-        <td><%= render "public/favorites/btn", maintenance: maintenance %></td>
-        <td><%= link_to '詳細', maintenance_path(maintenance), class: 'btn btn-info' %></td>
-      </tr>
+   <tbody>
+    <% if @maintenances.present? %>
+      <% maintenances.each do |maintenance| %>
+        <tr class="<%= 'gray-post' if maintenance.draft? %>">
+          <td><%= maintenance.car.car_name %></td>
+            <td>
+              <% if maintenance.draft? %>
+                <span class="private-label"><非公開></span>
+              <% end %>
+                <%= maintenance.title %>
+          </td>
+          <td><%= maintenance.maintenance_day %></td>
+          <td><%= maintenance.maintenance %></td>
+          <td><%= maintenance.work_difficulty %></td>
+          <td><%= render "public/favorites/btn", maintenance: maintenance %></td>
+          <td><%= link_to '詳細', maintenance_path(maintenance), class: 'btn btn-info' %></td>
+          <td><%= link_to '編集', edit_maintenance_path(maintenance), class: 'btn btn-success' %></td>
+          <td><%= link_to 'ユーザー', user_path(maintenance.user_id), class: 'btn btn-primary' %></td>
+          <td>コメント数: <%= maintenance.maintenance_comments.count %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

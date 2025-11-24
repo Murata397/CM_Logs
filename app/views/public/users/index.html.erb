@@ -11,28 +11,7 @@
         <%= link_to "グループを作成する", new_group_path, class: 'btn btn-success' %>
         <%= link_to "グループ一覧", groups_path, class: 'btn btn-success' %>
       </h2>
-      <table class="table table-honor table-inverse">
-          <thead>
-              <tr>
-                  <th>image</th>
-                  <th>ユーザー名</th>
-                  <th>自己紹介</th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <% @users.each do |user| %>
-                  <tr>
-                      <td class="w-25">
-                        <%= image_tag user.get_profile_image, class:"img-fluid", alt:"User Image" %>
-                      </td>
-                      <td><%= user.name %></td>
-                      <td><%= user.introduction %></td>
-                      <td><%= link_to '詳細', user_path(user), class: 'btn btn-success' %></td>
-                  </tr>
-              <% end %>
-          </tbody>
-      </table>
+      <%= render 'index', users: @users %>
     </div>
   </div>
 </div>

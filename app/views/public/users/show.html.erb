@@ -33,35 +33,7 @@
           <%= link_to 'ユーザー編集', edit_user_path(@user), class: "btn btn-success" %>
         <% end %>
       <h1>Cars</h1>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>image</th>
-            <th>メーカー</th>
-            <th>車名</th>
-            <th>型式</th>
-            <th>総走行距離</th>
-            <th>使用用途</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @cars.each do |car| %>
-            <tr>
-              <td class="w-25">
-                <%= image_tag car.car_image, class: "img-fluid", alt: "Car Image" %>
-              </td>
-              <td><%= car.manufacturer_name %></td>
-              <td><%= car.car_name %></td>
-              <td><%= car.car_model %></td>
-              <td><%= car.odometer %></td>
-              <td><%= car.purpose %></td>
-              <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
-              <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      
+      <%= render 'public/cars/index', cars: @cars %>
     </div>
   </div>
 </div>

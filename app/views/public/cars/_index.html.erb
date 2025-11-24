@@ -10,18 +10,26 @@
     </tr>
   </thead>
   <tbody>
-    <% cars.each do |car| %>
-       <tr>
-        <td class="w-25">
-          <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
-        </td>
-        <td><%= car.manufacturer_name %></td>
-        <td><%= car.car_name %></td>
-        <td><%= car.car_model %></td>
-        <td><%= car.odometer %></td>
-        <td><%= car.purpose %></td>
-        <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
-      </tr>
+    <% if @cars.present? %>
+      <% @cars.each do |car| %>
+        <tr>
+          <td class="w-25">
+            <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
+          </td>
+          <td><%= car.manufacturer_name %></td>
+          <td><%= car.car_name %></td>
+          <td><%= car.car_model %></td>
+          <td><%= car.odometer %></td>
+          <td><%= car.purpose %></td>
+          <td><%= link_to '詳細', car_path(car), class: 'btn btn-info' %></td>
+          <td><%= link_to '編集', edit_car_path(car), class: 'btn btn-success' %></td>
+          <td>
+            <% unless current_user.id == car.user_id %>
+              <%= link_to 'ユーザー', user_path(car.user_id), class: 'btn btn-primary' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

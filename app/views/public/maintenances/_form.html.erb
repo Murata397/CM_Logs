@@ -1,0 +1,101 @@
+<%= form_for(@maintenance) do |f| %>
+  <div class="form-group">
+    <%= f.label :car_id, "車両を選択" %>
+    <%= f.collection_select :car_id, current_user.cars, :id, :car_model, { prompt: "車両を選択してください" }, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :作業日 %>
+    <%= f.date_field :maintenance_day, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :作業内容 %>
+    <%= f.select :maintenance, ['', '日常点検', '法定点検', 'チューニング', '洗車', 'メンテナンス'], {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :作業難易度 %>
+    <%= f.select :work_difficulty, ['', '簡単', '普通', '難しい'], {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tool_images, '使用工具画像' %>
+    <%= f.file_field :tool_images, class: "form-control-file", accept: "image/*" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :作業時間 %>
+    <%= f.text_field :work_time, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :作業料金 %>
+    <%= f.text_field :work_pay, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :images, '作業画像' %>
+    <%= f.file_field :images, multiple: true, class: "form-control-file", accept: "image/*" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :作業説明 %>
+    <input type="text" name="maintenance[work_descriptions][]" class="form-control">
+  </div>
+  <div class="input_fields"></div>
+  <div class="add_field_button btn btn-primary">作業画像・説明を追加</div>
+  <div class="form-group">
+    <%= f.label :関連URL %>
+    <%= f.text_field :related_information, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :is_active, "公開設定" %>
+    <%= f.select :is_active, [["公開", "published"], ["非公開（下書き）", "draft"]], {}, class: "form-control" %>
+  </div> 
+  <br>
+  <button type="submit" class="btn btn-primary">更新</button>
+  <%= link_to "戻る", maintenances_path, class: "btn btn-secondary" %>
+<% end %>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+
+    const addButton = document.querySelector('.add_field_button');
+    const inputFieldsWrap = document.querySelector('.input_fields');
+    const maxFields = 10;
+
+    if (!addButton || addButton.dataset.listenerAdded === "true") return;
+    addButton.dataset.listenerAdded = "true";
+
+    let x = 1;
+
+    addButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (x < maxFields) {
+        x++;
+
+        const newField = document.createElement('div');
+        newField.classList.add("added-field");
+
+        newField.innerHTML = `
+          <div class="form-group">
+            <label>作業画像</label><br>
+            <input type="file" name="maintenance[images][]" multiple>
+          </div>
+          <div class="form-group">
+            <label>作業説明</label>
+            <input type="text" name="maintenance[work_descriptions][]" class="form-control">
+          </div>
+          <button type="button" class="btn btn-danger btn-sm remove_field_button">削除</button>
+          <hr>
+        `;
+
+        inputFieldsWrap.appendChild(newField);
+
+        const removeButton = newField.querySelector('.remove_field_button');
+        removeButton.addEventListener('click', function () {
+          newField.remove();
+          x--;
+        });
+      }
+    });
+
+  });
+</script>
