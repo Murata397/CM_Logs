@@ -8,11 +8,17 @@
   </thead>
   <tbody>
     <% @maintenance_comments.each do |comment| %>
-      <tr>
-        <td><%= comment.user.name %></td>
-        <td><%= comment.comment %></td>
-        <td><%= link_to '削除', admin_maintenance_comment_path(maintenance_id: comment.maintenance_id, id: comment.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %></td>
-      </tr>
+      <tr class="<%= 'text-muted' if comment.deleted? %>">
+              <td><%= comment.user&.name || "退会ユーザー" %></td>
+              <td><%= comment.comment %></td>
+              <td>
+                <% if comment.deleted? %>
+                  <%= link_to "復元", restore_admin_maintenance_comment_path(comment), method: :patch, class: "btn btn-success" %>
+                <% else %>
+                  <%= link_to "削除", admin_maintenance_comment_path(comment),method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
     <% end %>
   </tbody>
 </table>

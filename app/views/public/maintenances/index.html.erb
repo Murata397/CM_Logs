@@ -27,9 +27,14 @@
         <tbody>
           <% if @maintenances.present? %>
             <% @maintenances.each do |maintenance| %>
-              <tr>
+              <tr class="<%= 'gray-post' if maintenance.draft? %>">
                 <td><%= maintenance.car.car_name %></td>
-                <td><%= maintenance.title %></td>
+                <td>
+                  <% if maintenance.draft? %>
+                    <span class="private-label"><非公開></span>
+                  <% end %>
+                  <%= maintenance.title %>
+                </td>
                 <td><%= maintenance.maintenance_day %></td>
                 <td><%= maintenance.maintenance %></td>
                 <td><%= maintenance.work_difficulty %></td>

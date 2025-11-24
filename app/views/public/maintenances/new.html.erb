@@ -63,6 +63,10 @@
           <%= f.label :関連URL %>
           <%= f.text_field :related_information, class: "form-control" %>
         </div>
+        <div class="field">
+          <%= f.label :is_active, "公開設定" %>
+          <%= f.select :is_active, [["公開", "published"], ["非公開（下書き）", "draft"]], {}, class: "form-control" %>
+        </div> 
         <button type="submit" class="btn btn-primary">作成</button>
         <%= link_to "一覧", maintenances_path, class: "btn btn-secondary" %>
       <% end %>

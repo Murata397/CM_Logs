@@ -28,18 +28,24 @@ class Public::MaintenancesController < ApplicationController
   end
 
   def index
-    @maintenances = Maintenance.all
-    @maintenances = Maintenance.includes(:car).all
     if params[:user_id].present?
       @user = User.find(params[:user_id])
-      @maintenances = @user.maintenances
+      if current_user == @user
+        @maintenances = @user.maintenances.includes(:car)
+      else
+        @maintenances = @user.maintenances.published.includes(:car)
+      end
     else
-     render 'index'
+      @maintenances = Maintenance.published.includes(:car)
     end
   end
 
   def show
     @maintenance = Maintenance.find(params[:id])
+    if @maintenance.is_active == false && @maintenance.user != current_user
+      redirect_to maintenances_path, alert: "この投稿は非公開です。"
+      return
+    end
     @user = @maintenance.user
     @maintenance_new = Maintenance.new
     @maintenance_comment = MaintenanceComment.new
@@ -100,6 +106,7 @@ class Public::MaintenancesController < ApplicationController
   private
 
   def maintenance_params
-    params.require(:maintenance).permit(:title,:maintenance_day,:maintenance,:work_difficulty,:work_time,:work_pay,:tool_images,:related_information,:car_id,images: [],work_descriptions: [])
+    params.require(:maintenance).permit(:title,:maintenance_day,:maintenance,
+    :work_difficulty,:work_time,:work_pay,:tool_images,:related_information,:car_id, :is_active, images: [], work_descriptions: [])
   end
 end

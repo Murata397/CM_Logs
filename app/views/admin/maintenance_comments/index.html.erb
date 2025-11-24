@@ -19,7 +19,7 @@
         </thead>
         <tbody>
           <% @maintenance_comments.each do |comment| %>
-            <tr class="<%= 'text-muted' if comment.deleted? %>">
+            <tr class="<%= 'table-danger' if comment.deleted? %>">
               <td><%= comment.user&.name || "退会ユーザー" %></td>
               <td><%= comment.comment %></td>
               <td>

@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <% @groups.each do |group| %>
-            <tr>
+            <tr class="<%= 'table-danger' if group.deleted? %>">
               <td><%= image_tag url_for(group.group_image.first), size: '300x300' %></td>
               <td><%= group.group_name %></td>
               <td><%= group.group_introduction %></td>

@@ -12,6 +12,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>公開状態</th>
             <th>車種</th>
             <th>タイトル</th>
             <th>作業日</th>
@@ -23,7 +24,14 @@
         <tbody>
           <% if @maintenances.present? %>
             <% @maintenances.each do |maintenance| %>
-              <tr class="<%= 'table-secondary' if maintenance.deleted_at.present? %>">
+              <tr class="<%= 'table-danger' if maintenance.deleted_at.present? %>">
+                <td>
+                  <% if maintenance.published? %>
+                    <span class="badge bg-success">公開</span>
+                  <% else %>
+                    <span class="badge bg-secondary">非公開</span>
+                  <% end %>
+                </td>
                 <td><%= maintenance.car&.car_name %></td>
                 <td><%= maintenance.title %></td>
                 <td><%= maintenance.maintenance_day %></td>

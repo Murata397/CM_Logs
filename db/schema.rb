@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_11_23_080912) do
+ActiveRecord::Schema.define(version: 2025_11_24_124006) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2025_11_23_080912) do
     t.string "work_pay"
     t.string "related_information"
     t.text "work_description"
-    t.boolean "is_active"
+    t.boolean "is_active", default: false
     t.integer "user_id"
     t.string "images"
     t.string "tool_images"

@@ -1,5 +1,7 @@
 class Maintenance < ApplicationRecord
 
+  enum is_active: { draft: false, published: true }
+
   belongs_to :user
   belongs_to :car
   has_many_attached :images, dependent: :destroy
@@ -28,9 +30,6 @@ class Maintenance < ApplicationRecord
     deleted_at.present?
   end
 
-  def index
-    @maintenances = Maintenance.select(:id, :title, :maintenance_day, :maintenance, :work_difficulty)
-  end
   def get_tool_images
     if tool_images
       tool_images
