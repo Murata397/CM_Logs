@@ -50,7 +50,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def un
+  def unsubscribe
     @user = current_user
     @user.soft_delete
     sign_out @user

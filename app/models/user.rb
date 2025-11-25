@@ -27,7 +27,13 @@ class User < ApplicationRecord
   default_scope { where(deleted_at: nil) }
 
   def soft_delete
-    update(deleted_at: Time.current)
+    transaction do
+      update!(deleted_at: Time.current)
+  
+      owned_groups.each do |group|
+        group.soft_delete
+      end
+    end
   end
 
   def restore

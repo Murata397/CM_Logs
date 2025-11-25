@@ -20,7 +20,7 @@
         <div class="form-group">
           <%= f.submit "ユーザー更新", class: "btn btn-primary", data: { disable_with: "Update User" } %>
           <%= link_to "マイページ", user_path(current_user), class: "btn btn-secondary" %>
-          <%= button_to '退会', unsubscribe_user_path(current_user),method: :delete,data: { confirm: "本当に退会しますか？" },class: "btn btn-danger" %>
+          <%= link_to '退会',unsubscribe_user_path(current_user),method: :delete,data: { confirm: "本当に退会しますか？" },class: "btn btn-danger" %>
         </div>
       <% end %>
     </div>

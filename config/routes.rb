@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
     end
 
-    resources :users do
+    resources :users, only: [:index, :show, :edit, :update] do
       delete 'unsubscribe', on: :member
     end
 
@@ -64,8 +64,6 @@ Rails.application.routes.draw do
     end
 
     resources :favorites, only: [:index]
-
-    resources :users, only: [:index, :show, :edit, :update]
     resources :cars, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :fuel_efficiencies, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 

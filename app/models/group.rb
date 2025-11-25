@@ -40,6 +40,7 @@ class Group < ApplicationRecord
   end
 
   def is_owner_by?(user)
+    return false if owner.nil? || user.nil?
     owner.id == user.id
   end
 
