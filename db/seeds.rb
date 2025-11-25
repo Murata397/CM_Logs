@@ -77,6 +77,7 @@ Maintenance.find_or_create_by!(title: "タイヤ交換") do |maintenance|
   maintenance.car = voxy_car
   maintenance.maintenance_day = Date.today
   maintenance.maintenance = '日常点検'
+  maintenance.work_difficulty: "普通"
   maintenance.user = User.find_by(name: 'James')
 end
 
@@ -85,6 +86,7 @@ Maintenance.find_or_create_by!(title: "電球交換") do |maintenance|
   maintenance.car = noah_car
   maintenance.maintenance_day = Date.today
   maintenance.maintenance = '法定点検'
+  maintenance.work_difficulty: "普通",
   maintenance.user = User.find_by(name: 'Lucas')
 end
 
@@ -93,6 +95,7 @@ Maintenance.find_or_create_by!(title: "オイル交換") do |maintenance|
   maintenance.car = landy_car
   maintenance.maintenance_day = Date.today
   maintenance.maintenance = 'メンテナンス'
+  maintenance.work_difficulty: "普通",
   maintenance.user = User.find_by(name: 'Olivia')
 end
 
