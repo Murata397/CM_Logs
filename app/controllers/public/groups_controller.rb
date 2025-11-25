@@ -8,12 +8,12 @@ class Public::GroupsController < ApplicationController
   end
 
   def index
-    @groups =Group.all
+    @groups = Group.all
   end
 
   def show
     @group = Group.find(params[:id])
-    @owner_user = User.find(@group.owner_id)
+    @owner_user = User.unscoped.find_by(id: @group.owner_id)
     @requests = @group.requests
   end
 

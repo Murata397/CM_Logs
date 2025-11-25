@@ -59,7 +59,7 @@
         <% end %>
       </div>
       <div class="col-md-2">
-        <% if current_user == @owner_user %>
+        <% if @owner_user.present? && current_user == @owner_user %>
           <%= render 'public/requests/index', requests: @requests %>
         <% end %>
       </div>
