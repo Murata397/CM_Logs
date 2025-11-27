@@ -39,10 +39,16 @@ class Public::GroupsController < ApplicationController
         @group.users << request.user
         request.destroy
       end
-      redirect_to @group, notice: 'Group updated.'
+      redirect_to @group, notice: 'グループ情報が更新されました。'
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.soft_delete
+    redirect_to groups_path, notice: 'グループを削除しました。'
   end
 
   def remove_member
@@ -51,9 +57,9 @@ class Public::GroupsController < ApplicationController
   
     if @group.is_owner_by?(current_user) && @group.users.exists?(@user.id)
       @group.users.delete(@user)
-      redirect_to @group, notice: 'The user was removed from the group.'
+      redirect_to @group, notice: 'グループを復元しました'
     else
-      redirect_to @group, alert: 'Operation not permitted.'
+      redirect_to @group, alert: '復元に失敗'
     end
   end
 
