@@ -38,7 +38,7 @@
       <p><strong>作業説明:</strong><%= @maintenance.work_description %></p>
       <p><strong>関連URL:</strong> <%= @maintenance.related_information %></p>
       <%= link_to "一覧", admin_maintenances_path, class: "btn btn-secondary" %>
-      <%= link_to '削除', admin_maintenance_path(@maintenance), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      <%= link_to '削除', admin_maintenance_path(@maintenance),method: :delete,data: { confirm: '本当に削除しますか？' },class: 'btn btn-danger' %>
     </div>
     <div class='col-md-6'>
       <table>
