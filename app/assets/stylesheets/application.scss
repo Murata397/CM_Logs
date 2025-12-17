@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
- body {
-  background-image: image-url("hoge.jpg");
+
+.gray-post {
+  background-color: #e0e0e0 !important;
+}
+
+.private-label {
+  color: red;
+  font-weight: bold;
+  margin-right: 5px;
 }
