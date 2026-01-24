@@ -26,7 +26,7 @@
 - 後ほど作成予定.
 ​
 ## 開発環境
-- OS：Mac
+- OS：Linux(Ubuntu 24.04)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
