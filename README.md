@@ -28,7 +28,6 @@
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1bYKUt_3xFuddmjszMtLODFeMQEdzCWOZguCdi6wEWyA/edit?usp=sharing
 - アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1AaOre6iF-UHjTLSwOZzPSXIr_Tgep6HO8VIzRqoKiWY/edit?usp=sharing
 
-​
 ## 開発環境
 - OS：Linux(Ubuntu 24.04)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
