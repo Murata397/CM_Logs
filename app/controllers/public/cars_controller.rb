@@ -54,7 +54,7 @@ class Public::CarsController < ApplicationController
       @car.destroy
       redirect_to cars_path, notice: "登録車両を削除しました。"
     else
-      redirect_to cars_path, alert: "他ユーザーの登録車両を削除することはできません。"
+      redirect_to cars_path, notice: "他ユーザーの登録車両を削除することはできません。"
     end
   end
 

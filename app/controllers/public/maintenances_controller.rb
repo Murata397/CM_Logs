@@ -1,5 +1,5 @@
 class Public::MaintenancesController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!, except: [:create]
   before_action :check_guest_user, except: [:index, :show]
   def new
     @maintenance = Maintenance.new
