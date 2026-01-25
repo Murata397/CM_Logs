@@ -23,7 +23,11 @@
 - 自分がメンテナンスをしたときの感想等を投稿するとき
 
 ## 設計書
-- 後ほど作成予定.
+- ER図：https://drive.google.com/file/d/1pQRFQn2vDjx4hhMxxo_8Pd0U95pmREH4/view?usp=sharing
+- 画面設計：https://drive.google.com/file/d/1tTyo9iXE6EEcuqB-Zc3SzqPgZ7ZrcEvy/view?usp=sharing
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1bYKUt_3xFuddmjszMtLODFeMQEdzCWOZguCdi6wEWyA/edit?usp=sharing
+- アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1AaOre6iF-UHjTLSwOZzPSXIr_Tgep6HO8VIzRqoKiWY/edit?usp=sharing
+
 ​
 ## 開発環境
 - OS：Linux(Ubuntu 24.04)
@@ -31,6 +35,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Visual Studio Code（VSCode）
-​
-## 使用素材
-
