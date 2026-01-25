@@ -10,8 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% if @cars.present? %>
-      <% @cars.each do |car| %>
+      <% cars.each do |car| %>
         <tr>
           <td class="w-25">
             <%= image_tag car.car_image, class:"img-fluid", alt:"Car Image" %>
@@ -30,6 +29,5 @@
           </td>
         </tr>
       <% end %>
-    <% end %>
   </tbody>
 </table>

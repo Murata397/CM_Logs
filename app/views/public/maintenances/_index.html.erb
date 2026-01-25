@@ -9,7 +9,6 @@
     </tr>
   </thead>
    <tbody>
-    <% if @maintenances.present? %>
       <% maintenances.each do |maintenance| %>
         <tr class="<%= 'gray-post' if maintenance.draft? %>">
           <td><%= maintenance.car.car_name %></td>
@@ -29,6 +28,5 @@
           <td>コメント数: <%= maintenance.maintenance_comments.count %></td>
         </tr>
       <% end %>
-    <% end %>
   </tbody>
 </table>
