@@ -65,3 +65,4 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+gem "concurrent-ruby", "= 1.3.4"
